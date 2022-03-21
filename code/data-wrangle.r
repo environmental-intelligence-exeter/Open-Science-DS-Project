@@ -1,3 +1,283 @@
+##########################################################################
+##  Download latest John Hopkins global Covid-19 cases & vaccines data  ##
+##########################################################################
+##### CASES
+jh_global_covid = fetch_data(url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+                             path = "data/covid-jh.csv" ## fetch latest github data
+) %>%
+  select(-c(Lat, Long)) %>% # be gone lat long
+  rename(Country = 2) %>%
+  mutate(Country = ifelse(Province.State == "French Guiana" & Country == "France", "French Guiana", Country)) %>%
+  mutate(Country = ifelse(Province.State == "French Polynesia" & Country == "France", "French Polynesia", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Guadeloupe" & Country == "France", "Guadeloupe", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Martinique" & Country == "France", "Martinique", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Mayotte" & Country == "France", "Mayotte", Country)) %>%
+  mutate(Country = ifelse(Province.State == "New Caledonia" & Country == "France", "New Caledonia", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Reunion" & Country == "France", "Reunion", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Saint Barthelemy" & Country == "France", "Saint Barthelemy", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Saint Pierre and Miquelon" & Country == "France", "Saint Pierre and Miquelon", Country)) %>%
+  mutate(Country = ifelse(Province.State == "St Martin" & Country == "France", "St Martin", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Wallis and Futuna" & Country == "France", "Wallis and Futuna", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Curacao" & Country == "Netherlands", "Curacao", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Sint Maarten" & Country == "Netherlands", "	Sint Maarten", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Aruba" & Country == "Netherlands", "Aruba", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Bonaire, Sint Eustatius and Saba" & Country == "Netherlands", "Bonaire, Sint Eustatius and Saba", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Anguilla" & Country == "United Kingdom", "Anguilla", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Bermuda" & Country == "United Kingdom", "Bermuda", Country)) %>%
+  mutate(Country = ifelse(Province.State == "British Virgin Islands" & Country == "United Kingdom", "British Virgin Islands", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Cayman Islands" & Country == "United Kingdom", "Cayman Islands", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Channel Islands" & Country == "United Kingdom", "Channel Islands", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Gibraltar" & Country == "United Kingdom", "Gibraltar", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Montserrat" & Country == "United Kingdom", "Montserrat", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Turks and Caicos Islands" & Country == "United Kingdom", "Turks and Caicos Islands", Country)) %>%
+  select(-c(Province.State)) %>%
+  pivot_longer(!Country, names_to = "Date", values_to = "cases") %>%
+  mutate(Date = paste0(sub('.', '', Date))) %>%
+  filter(Date == "2.22.22") %>%
+  select(-c(Date)) %>%
+  mutate(Country = case_when(
+    Country == "US" ~ "USA",
+    Country == "The Bahamas" ~ "Bahamas",
+    Country == "Taiwan*" ~ "Taiwan",
+    Country == "Korea, South" ~ "South Korea",
+    Country == "Congo (Kinshasa)" ~ "Democratic Republic of the Congo",
+    Country == "Congo (Brazzaville)" ~ "Republic of the Congo",
+    Country == "Czechia" ~ "Czech Republic",
+    Country == "Wallis and Futuna" ~ "Wallis and Futuna Islands",
+    Country == "Bonaire, Sint Eustatius and Saba" ~ "Bonaire",
+    TRUE ~ Country
+  ))
+
+jh_global_covid = aggregate(. ~ Country, jh_global_covid,  FUN = sum)
+# > head(jh_global_covid)
+# Country  cases
+# 1 Afghanistan 172716
+# 2     Albania 270455
+# 3     Algeria 264365
+# 4     Andorra  37820
+# 5      Angola  98671
+# 6  Antarctica     11
+
+#### VACCINES
+jh_vaccine = fetch_data(url = "https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/global_data/vaccine_data_global.csv",
+                        path = "data/js-vac.csv") %>%
+  select(Province_State,Country_Region, Doses_admin,People_partially_vaccinated,People_fully_vaccinated,Date) %>%
+  select(-c(Date)) %>%
+  rename(Country = Country_Region) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "French Guiana" &
+        Country == "France",
+      "French Guiana",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "French Polynesia" &
+        Country == "France",
+      "French Polynesia",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Guadeloupe" &
+      Country == "France",
+    "Guadeloupe",
+    Country
+  )) %>%
+  mutate(Country = ifelse(
+    Province_State == "Martinique" &
+      Country == "France",
+    "Martinique",
+    Country
+  )) %>%
+  mutate(Country = ifelse(
+    Province_State == "Mayotte" &
+      Country == "France",
+    "Mayotte",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "New Caledonia" &
+        Country == "France",
+      "New Caledonia",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Reunion" &
+      Country == "France",
+    "Reunion",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Saint Barthelemy" &
+        Country == "France",
+      "Saint Barthelemy",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Saint Pierre and Miquelon" &
+        Country == "France",
+      "Saint Pierre and Miquelon",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "St Martin" &
+      Country == "France",
+    "St Martin",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Wallis and Futuna" &
+        Country == "France",
+      "Wallis and Futuna",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Curacao" &
+      Country == "Netherlands",
+    "Curacao",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Sint Maarten" &
+        Country == "Netherlands",
+      "	Sint Maarten",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Aruba" &
+      Country == "Netherlands",
+    "Aruba",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Bonaire, Sint Eustatius and Saba" &
+        Country == "Netherlands",
+      "Bonaire, Sint Eustatius and Saba",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Anguilla" &
+        Country == "United Kingdom",
+      "Anguilla",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Bermuda" &
+      Country == "United Kingdom",
+    "Bermuda",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "British Virgin Islands" &
+        Country == "United Kingdom",
+      "British Virgin Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Cayman Islands" &
+        Country == "United Kingdom",
+      "Cayman Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Channel Islands" &
+        Country == "United Kingdom",
+      "Channel Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Gibraltar" &
+        Country == "United Kingdom",
+      "Gibraltar",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Montserrat" &
+        Country == "United Kingdom",
+      "Montserrat",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Turks and Caicos Islands" &
+        Country == "United Kingdom",
+      "Turks and Caicos Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = case_when(
+      Country == "US" ~ "USA",
+      Country == "The Bahamas" ~ "Bahamas",
+      Country == "Taiwan*" ~ "Taiwan",
+      Country == "Korea, South" ~ "South Korea",
+      Country == "Congo (Kinshasa)" ~ "Democratic Republic of the Congo",
+      Country == "Congo (Brazzaville)" ~ "Republic of the Congo",
+      Country == "Czechia" ~ "Czech Republic",
+      Country == "Wallis and Futuna" ~ "Wallis and Futuna Islands",
+      Country == "Bonaire, Sint Eustatius and Saba" ~ "Bonaire",
+      TRUE ~ Country
+    )
+  ) %>%
+  select(-c(Province_State))
+
+jh_vaccine = aggregate(. ~ Country, jh_vaccine, FUN = sum)
+
+# > head(jh_vaccine)
+# Country Doses_admin People_partially_vaccinated People_fully_vaccinated
+# 1         Afghanistan     5535254                     4907058                 4231984
+# 2             Albania     2707658                     1269746                 1196277
+# 3             Algeria    13461201                     7456361                 6076272
+# 4             Andorra      142420                       57797                   53250
+# 5              Angola    15505389                    10591264                 5448403
+# 6 Antigua and Barbuda      124726                       63492                   60963
+
+
+
+
+#continents_df = aggregate(. ~ continent, main_df, FUN = sum)
+
+# Missing Covid data from JH
+# [1] "Hong Kong"                "Puerto Rico"              "Myanmar"                  "Guam"
+# [5] "Palestine"                "Northern Mariana Islands" "Sint Maarten"             "U.S. Virgin Islands"
+# [9] "Canary Islands"           "British Virgin Islands"   "Crimea"                   "Saint Martin"
+# [13] "Faroe Islands"            "American Samoa"           "Sint Eustatius"
+
+# plot log plots
+# plot bivariate plots
+# cluster analysis using DBSCAN, k-means, Hierarchical
+# Output globe dataset for web vis
+#
+#
+#
+
 #################################################################
 ##             Covid-19 Data Platform Monthly Data             ##
 #################################################################
@@ -23,7 +303,14 @@ if (!file.exists("data/emi-api-data.tsv")) {
     filter(Country != "") %>%
     arrange(Date) %>% pivot_wider(names_from = Date, values_from = Count) %>%
     mutate_all(~ replace(., is.na(.), 0)) %>%
-    pivot_longer(!Country, names_to = "Date", values_to = "Count")
+    pivot_longer(!Country, names_to = "Date", values_to = "Count") %>%
+    mutate(
+      Country = case_when(
+        Country == "West Bank" ~ "Palestine",
+        Country == "Viet Nam" ~ "Vietnam",
+        TRUE ~ Country
+      )
+    )
 
   cd19_agg_data$CD19DP.total.Submissions = ave(cd19_agg_data$Count, cd19_agg_data$Country, FUN = cumsum)
   rm(cd19_agg_data_raw)
@@ -55,16 +342,8 @@ latest_gisaid = gisaid %>% filter(Date == "2022/02") %>% arrange(desc(GISAID.tot
 #################################################################
 ##                          Join Data                          ##
 #################################################################
-main_df = read.csv("../../../Downloads/summary-data-countries (1).csv") %>%
-  rename(Country =   ï..Country) %>%
-  mutate(
-    Country = case_when(
-      Country == "State of Palestine" ~ "Palestine",
-      Country == "Viet Nam" ~ "Vietnam",
-      TRUE ~ Country
-    )
-  ) %>%
-  right_join(latest_gisaid)  %>%
+main_df = cd19_agg_data %>%
+  right_join(gisaid)
   select(-c(Date, Raw.reads.submitted, Count)) %>%
   rename(C19DP.total.Submissions = Sequences.submitted) %>%
   left_join(jh_global_covid) %>%

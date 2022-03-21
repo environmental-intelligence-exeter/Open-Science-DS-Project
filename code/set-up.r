@@ -1,3 +1,23 @@
+## ---------------------------
+##
+## Script name: set-up.r
+##
+## Purpose of script: Install packages needed for project and set up helper functions.
+##
+## Author:Nathaneal Sheehan
+##
+## Date Created: 2021-03-20
+##
+## Email: nathanaelsheehan@gmail.com
+##
+## ---------------------------
+##
+## Notes:
+##
+##
+## ---------------------------
+
+
 #################################################################
 ##                           Library                           ##
 #################################################################
