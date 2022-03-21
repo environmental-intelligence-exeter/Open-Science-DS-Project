@@ -22,11 +22,11 @@ if (!file.exists("data/emi-api-data.tsv")) {
     mutate(Date = paste0(substr(Date, 1, 4), "/", substr(Date, 6, 7))) %>%
     filter(Country != "") %>%
     arrange(Date) %>% pivot_wider(names_from = Date, values_from = Count) %>%
-    mutate_all( ~ replace(., is.na(.), 0)) %>%
+    mutate_all(~ replace(., is.na(.), 0)) %>%
     pivot_longer(!Country, names_to = "Date", values_to = "Count")
 
   cd19_agg_data$CD19DP.total.Submissions = ave(cd19_agg_data$Count, cd19_agg_data$Country, FUN = cumsum)
-
+  rm(cd19_agg_data_raw)
 }
 
 ##################################################################
@@ -51,3 +51,30 @@ gisaid = as.data.frame(
 gisaid$GISAID.total.Submissions = ave(gisaid$Count, gisaid$Country, FUN = cumsum)
 
 latest_gisaid = gisaid %>% filter(Date == "2022/02") %>% arrange(desc(GISAID.total.Submissions))
+
+#################################################################
+##                          Join Data                          ##
+#################################################################
+main_df = read.csv("../../../Downloads/summary-data-countries (1).csv") %>%
+  rename(Country =   ï..Country) %>%
+  mutate(
+    Country = case_when(
+      Country == "State of Palestine" ~ "Palestine",
+      Country == "Viet Nam" ~ "Vietnam",
+      TRUE ~ Country
+    )
+  ) %>%
+  right_join(latest_gisaid)  %>%
+  select(-c(Date, Raw.reads.submitted, Count)) %>%
+  rename(C19DP.total.Submissions = Sequences.submitted) %>%
+  left_join(jh_global_covid) %>%
+  left_join(jh_vaccine) %>%
+  na.omit(cases) %>%
+  mutate("Genomes per confirmed cases (GISAID)" = GISAID.total.Submissions / cases) %>%
+  mutate("Genomes per confirmed cases (C19DP)" =  C19DP.total.Submissions / cases) %>%
+  mutate("Genomes per confirmed full vaccine (GISAID)" = GISAID.total.Submissions / cases) %>%
+  mutate("Genomes per confirmed full vaccine (C19DP)" =  C19DP.total.Submissions / cases)
+
+main_df$continent = countrycode(sourcevar = main_df[, "Country"],
+                                origin = "country.name",
+                                destination = "continent")
