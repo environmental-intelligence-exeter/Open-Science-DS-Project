@@ -1,0 +1,573 @@
+---
+title: "TRUST Principles for SARS-CoV-2 digital repositories: a case study of GISAID and the Covid-19 Data Portal "
+author: "Nathanael Sheehan & Sabina Leonelli"
+output:
+  html_notebook:
+    code_folding: hide
+---
+---
+
+Since the pandemic was declared 
+
+ The two most popular platforms GISAID and Covid-19 Data Portal differ in there policies towards data publishing and authentication, however are both considered within the umbrella of open science organisations.   
+
+Submissions to databases can involve an agreement between the data depositor and the repository or can involve an altruistic donation on behalf of the data depositor; while both actions are considered under the "open science" umbrella they differ in their political and social orientation. The pandemic has exacerbated the omnipresence of digital technologies and infrastructures upholding social decision making - as Leonelli points out governance will often resort to survelience as an immediate approach to validate a governments ability in handling a crisis.
+
+- What is a SARS CoV-2 digital repository?
+
+Since the genesis of the Internet digital repositories have taken up space in cyberspace as a means of knowledge sharing between global networks of scientific researchers and the wider public. Digital repostories may be understood as the assembly of a single or numerous software programs
+
+*Here I will use the word digital repository explicity refering to scientific digital repositories
+
+exist for different purposes and 
+Digital repositories have existed as long as the internet and 
+
+- Who are GISAID and Covid-19 Data Portal?
+- Summary statistics of submission data
+- Discussion [Open specturm of platforms, ]
+A digital repository is datum stored on internet infracturue. 
+
+Among the most popular of these databases have 
+These databases have grown in populairty and acceptance amongst the intertwined actor network who are involved in their assembly; the two most popular SARS-CoV-2 datasharing platoforms is GISAID and 
+
+There is dispute in the data-sharing community with regards on
+In what ways can data repositories and the publics who es
+ be shared 
+How to best share SARS-CoV-2 genome sequences?  
+Who benefits when data-sharing is made normative in a crisis? How can data-sharing accomodate 
+
+What is clear is that submission to any of the databases doesn't mean a country will recieve a sufficent amount of vaccines to ensure safety on their nation. Rather, it shows that nations where cases were high and technology infrastructure and culture werwe o
+
+Behind every submission is the labour of the reseacher, whos results are altruistically shared as a collective scientific effort to minimise t
+
+This act of data sharing has become commonplace between the recursive publics of software developers, bioinformatactions, 
+
+which assemble the infrastrucutre for data to be stored and analysed and the institutions and governments which fund them, 
+
+GISAID has been collected flu genomes for a long time. Since the pandemic began they have become the biggest database of covid genomes. GISAID does not allow seqeunces to be reshared publicly, which the European Bioinformatics Institute thinks is hampering the efforts to understand the virus. Antwelier instead demands for more openness, in order to protect us against the externsential doom of humankind. Antwelier says people should donate the data to one of the triad.GISAID confirms a user identity. 
+
+Rapid data sharing is associated with open science practices. The emancipation of knowledge and the restriction of access. Open science is not clear on what is good data sharing or what is bad, but it does acknoweldge the repercussions which also exist with rapid data sharing.
+
+For those who continue to work on the frontier and front lines of health response to the Covid-19 Virus 
+
+Following proclaimed "Open Science" principles  
+
+The rapid sharing of Covid-19 data and literature has been promoted by numerous governing bodies 
+
+## TRUST Principles
+
+"As information and communication technology has become pervasive in our society, we are increasingly dependent on both digital data and repositories that provide access to and enable the use of such resources. Repositories must earn the trust of the communities they intend to serve and demonstrate that they are reliable and capable of appropriately managing the data they hold." (Lin et al. 2020)
+
+#### Transparency
+- To be transparent about specific repository services and data holdings that are verifiable by publicly accessible evidence.
+
+#### Responsibility
+- To be responsible for ensuring the authenticity and integrity of data holdings and for the reliability and persistence of its service.
+
+#### User Focus	
+- To ensure that the data management norms and expectations of target user communities are met.
+
+#### Sustainability	
+- To sustain services and preserve data holdings for the long-term.
+
+#### Technology	
+- To provide infrastructure and capabilities to support secure, persistent, and reliable services.
+
+# Data Cleaning and Transformation
+
+```{r eval=TRUE}
+#################################################################
+##                           Library                           ##
+#################################################################
+pkgs = c("tidyverse",
+         "ddplot",
+         "countrycode",
+         "showtext",
+         "ggpubr")
+installed_pkgs = pkgs %in% rownames(installed.packages())
+if (any(installed_pkgs == FALSE)) {
+  install.packages[!installed_pkgs]
+}
+invisible(lapply(pkgs, library, character.only = TRUE))
+rm(installed_pkgs, pkgs)
+font_add_google("Ubuntu", "ub")
+##################################################################
+##                       Helper Functions                       ## thanx for helpin
+##################################################################
+fetch_data = function(url,path) {
+ url = url
+ path = path
+ download.file(url,path)
+ read.csv(path)
+}
+dark_theme = function() {
+  theme(
+    # add border 1)
+    panel.border = element_rect(
+      colour = "slategrey",
+      fill = NA,
+      linetype = 2
+    ),
+    # color background 2)
+    panel.background = element_rect(fill = "white"),
+    # modify grid 3)
+    panel.grid.major.x = element_line(
+      colour = "#cf2e2e",
+      linetype = 3,
+      size = 0.5
+    ),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    # modify text, axis and colour 4) and 5)
+    axis.text = element_text(
+      colour = "white",
+      face = "italic",
+      family = "sans"
+    ),
+    axis.title = element_text(colour = "white", family = "sans"),
+    axis.ticks = element_line(colour = "white"),
+    plot.background = element_rect(fill = "#cf2e2e"),
+    plot.title = element_text(family = "sans", hjust = .5, size = 16),
+    plot.subtitle = element_text(family = "sans", hjust = .5, size = 12),
+    legend.background = element_rect(fill = "#cf2e2e"),
+    legend.text  = element_text(color = "white", family = "sans", size = 10),
+    legend.key = element_rect(fill = "#cf2e2e"),
+    # legend at the bottom 6)
+    legend.position = "bottom"
+  )
+}
+wss = function(k) {
+  kmeans(b, k, nstart = 10 )$tot.withinss
+}
+options(scipen=999)
+##########################################################################
+##  Download latest John Hopkins global Covid-19 cases & vaccines data  ##
+##########################################################################
+##### CASES
+jh_global_covid = fetch_data(url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
+           path = "data/covid-jh.csv" ## fetch latest github data
+           ) %>%
+  select(-c(Lat, Long)) %>% # be gone lat long
+  # select(-1) %>%
+  rename(Country = 2) %>%
+  mutate(Country = ifelse(Province.State == "French Guiana" & Country == "France", "French Guiana", Country)) %>%
+  mutate(Country = ifelse(Province.State == "French Polynesia" & Country == "France", "French Polynesia", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Guadeloupe" & Country == "France", "Guadeloupe", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Martinique" & Country == "France", "Martinique", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Mayotte" & Country == "France", "Mayotte", Country)) %>%
+  mutate(Country = ifelse(Province.State == "New Caledonia" & Country == "France", "New Caledonia", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Reunion" & Country == "France", "Reunion", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Saint Barthelemy" & Country == "France", "Saint Barthelemy", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Saint Pierre and Miquelon" & Country == "France", "Saint Pierre and Miquelon", Country)) %>%
+  mutate(Country = ifelse(Province.State == "St Martin" & Country == "France", "St Martin", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Wallis and Futuna" & Country == "France", "Wallis and Futuna", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Curacao" & Country == "Netherlands", "Curacao", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Sint Maarten" & Country == "Netherlands", "	Sint Maarten", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Aruba" & Country == "Netherlands", "Aruba", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Bonaire, Sint Eustatius and Saba" & Country == "Netherlands", "Bonaire, Sint Eustatius and Saba", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Anguilla" & Country == "United Kingdom", "Anguilla", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Bermuda" & Country == "United Kingdom", "Bermuda", Country)) %>%
+  mutate(Country = ifelse(Province.State == "British Virgin Islands" & Country == "United Kingdom", "British Virgin Islands", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Cayman Islands" & Country == "United Kingdom", "Cayman Islands", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Channel Islands" & Country == "United Kingdom", "Channel Islands", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Gibraltar" & Country == "United Kingdom", "Gibraltar", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Montserrat" & Country == "United Kingdom", "Montserrat", Country)) %>%
+  mutate(Country = ifelse(Province.State == "Turks and Caicos Islands" & Country == "United Kingdom", "Turks and Caicos Islands", Country)) %>%
+  select(-c(Province.State)) %>%
+  pivot_longer(!Country, names_to = "Date", values_to = "cases") %>%
+  mutate(Date = paste0(sub('.', '', Date))) %>%
+  filter(Date == "2.22.22") %>%
+  select(-c(Date)) %>%
+  mutate(Country = case_when(
+    Country == "US" ~ "USA",
+    Country == "The Bahamas" ~ "Bahamas",
+    Country == "Taiwan*" ~ "Taiwan",
+    Country == "Korea, South" ~ "South Korea",
+    Country == "Congo (Kinshasa)" ~ "Democratic Republic of the Congo",
+    Country == "Congo (Brazzaville)" ~ "Republic of the Congo",
+    Country == "Czechia" ~ "Czech Republic",
+    Country == "Wallis and Futuna" ~ "Wallis and Futuna Islands",
+    Country == "Bonaire, Sint Eustatius and Saba" ~ "Bonaire",
+    TRUE ~ Country
+  ))
+
+jh_global_covid = aggregate(. ~ Country, jh_global_covid,  FUN = sum)
+# > head(jh_global_covid)
+# Country  cases
+# 1 Afghanistan 172716
+# 2     Albania 270455
+# 3     Algeria 264365
+# 4     Andorra  37820
+# 5      Angola  98671
+# 6  Antarctica     11
+
+#### VACCINES
+jh_vaccine = fetch_data(url = "https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/global_data/vaccine_data_global.csv",
+           path = "data/js-vac.csv") %>%
+  select(Province_State,Country_Region, Doses_admin,People_partially_vaccinated,People_fully_vaccinated,Date) %>%
+  select(-c(Date)) %>%
+  rename(Country = Country_Region) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "French Guiana" &
+        Country == "France",
+      "French Guiana",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "French Polynesia" &
+        Country == "France",
+      "French Polynesia",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Guadeloupe" &
+      Country == "France",
+    "Guadeloupe",
+    Country
+  )) %>%
+  mutate(Country = ifelse(
+    Province_State == "Martinique" &
+      Country == "France",
+    "Martinique",
+    Country
+  )) %>%
+  mutate(Country = ifelse(
+    Province_State == "Mayotte" &
+      Country == "France",
+    "Mayotte",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "New Caledonia" &
+        Country == "France",
+      "New Caledonia",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Reunion" &
+      Country == "France",
+    "Reunion",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Saint Barthelemy" &
+        Country == "France",
+      "Saint Barthelemy",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Saint Pierre and Miquelon" &
+        Country == "France",
+      "Saint Pierre and Miquelon",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "St Martin" &
+      Country == "France",
+    "St Martin",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Wallis and Futuna" &
+        Country == "France",
+      "Wallis and Futuna",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Curacao" &
+      Country == "Netherlands",
+    "Curacao",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Sint Maarten" &
+        Country == "Netherlands",
+      "	Sint Maarten",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Aruba" &
+      Country == "Netherlands",
+    "Aruba",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Bonaire, Sint Eustatius and Saba" &
+        Country == "Netherlands",
+      "Bonaire, Sint Eustatius and Saba",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Anguilla" &
+        Country == "United Kingdom",
+      "Anguilla",
+      Country
+    )
+  ) %>%
+  mutate(Country = ifelse(
+    Province_State == "Bermuda" &
+      Country == "United Kingdom",
+    "Bermuda",
+    Country
+  )) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "British Virgin Islands" &
+        Country == "United Kingdom",
+      "British Virgin Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Cayman Islands" &
+        Country == "United Kingdom",
+      "Cayman Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Channel Islands" &
+        Country == "United Kingdom",
+      "Channel Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Gibraltar" &
+        Country == "United Kingdom",
+      "Gibraltar",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Montserrat" &
+        Country == "United Kingdom",
+      "Montserrat",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = ifelse(
+      Province_State == "Turks and Caicos Islands" &
+        Country == "United Kingdom",
+      "Turks and Caicos Islands",
+      Country
+    )
+  ) %>%
+  mutate(
+    Country = case_when(
+      Country == "US" ~ "USA",
+      Country == "The Bahamas" ~ "Bahamas",
+      Country == "Taiwan*" ~ "Taiwan",
+      Country == "Korea, South" ~ "South Korea",
+      Country == "Congo (Kinshasa)" ~ "Democratic Republic of the Congo",
+      Country == "Congo (Brazzaville)" ~ "Republic of the Congo",
+      Country == "Czechia" ~ "Czech Republic",
+      Country == "Wallis and Futuna" ~ "Wallis and Futuna Islands",
+      Country == "Bonaire, Sint Eustatius and Saba" ~ "Bonaire",
+      TRUE ~ Country
+    )
+  ) %>%
+  select(-c(Province_State))
+
+jh_vaccine = aggregate(. ~ Country, jh_vaccine, FUN = sum)
+# > head(jh_vaccine)
+# Country Doses_admin People_partially_vaccinated People_fully_vaccinated
+# 1         Afghanistan     5535254                     4907058                 4231984
+# 2             Albania     2707658                     1269746                 1196277
+# 3             Algeria    13461201                     7456361                 6076272
+# 4             Andorra      142420                       57797                   53250
+# 5              Angola    15505389                    10591264                 5448403
+# 6 Antigua and Barbuda      124726                       63492                   60963
+##################################################################
+##                  GISAID Global Monthly Data                  ##
+##################################################################
+gisaid = readxl::read_xlsx("../../../Downloads/gisaid_monthly_submissions_global_2022-02-21.xlsx") %>%
+  rename(Country = ...1) %>%
+  mutate(Country = case_when(
+    Country == "US" ~ "USA",
+    Country == "The Bahamas" ~ "Bahamas",
+    TRUE ~ Country
+  ))  %>%
+  pivot_longer(!Country, names_to = "Date", values_to = "Count") %>%
+  filter(Date != "country_total") %>%
+  mutate(Date = paste0(substr(Date, 4, 8), "/", substr(Date, 1, 2))) %>%
+  filter(Country != "monthly total:")
+
+gisaid$GISAID.total.Submissions = ave(gisaid$Count, gisaid$Country, FUN = cumsum)
+
+latest_gisaid = gisaid %>% filter(Date == "2022/02") %>% arrange(desc(GISAID.total.Submissions))
+
+
+#################################################################
+##                          Join Data                          ##
+#################################################################
+main_df = read.csv("../../../Downloads/summary-data-countries (1).csv") %>%
+  rename(Country =  ï..Country) %>%
+  mutate(
+    Country = case_when(
+      Country == "State of Palestine" ~ "Palestine",
+      Country == "Viet Nam" ~ "Vietnam",
+      TRUE ~ Country
+    )
+  ) %>%
+  right_join(latest_gisaid)  %>%
+  select(-c(Date, Raw.reads.submitted, Count)) %>%
+  rename(C19DP.total.Submissions = Sequences.submitted) %>%
+  left_join(jh_global_covid) %>%
+  left_join(jh_vaccine) %>%
+  na.omit(cases) %>%
+  mutate("Genomes per confirmed cases (GISAID)" = GISAID.total.Submissions / cases) %>%
+  mutate("Genomes per confirmed cases (C19DP)" =  C19DP.total.Submissions / cases) %>%
+  mutate("Genomes per confirmed full vaccine (GISAID)" = GISAID.total.Submissions / cases) %>%
+  mutate("Genomes per confirmed full vaccine (C19DP)" =  C19DP.total.Submissions / cases)
+
+main_df$continent = countrycode(sourcevar = main_df[, "Country"],
+                                origin = "country.name",
+                                destination = "continent")
+```
+
+# Reproducing: A race against time (Romano and Melo 2021)
+
+# GISAID
+
+```{r eval=TRUE, fig.width=12,fig.height=8, echo=FALSE}
+p=ggplot(main_df, aes((GISAID.total.Submissions), (main_df$cases))) + geom_point(aes(color = continent,size = `Genomes per confirmed cases (GISAID)`),
+                                                                                          alpha = 75 /
+                                                                                            100) + geom_text(
+                                                                                              aes(label = Country,
+                                                                                                  color = continent),
+                                                                                              nudge_y = 0.06
+                                                                                            ) + dark_theme() +   labs(
+                                                                                              x = "Sequenced Genomes",
+                                                                                              y = "Confirmed Cases",
+                                                                                              title = "Confirmed Covid-19 Cases vs. \nSequenced Genomes in the GISAID Open database",
+                                                                                              caption = "\nFig. 1: The proportion of global SARS-CoV-2 cases sequenced and shared on the GISAID database until Febuary 22 2022\n The size of each circle is proportional to the number of SARS-CoV-2 genomes sequenced per number of confirmed cases. Countries are colored by continent.\n\nSARS-CoV-2 Data: John Hopkins"
+                                                                                            )  + scale_y_log10() + scale_x_log10() + geom_rug(col=rgb(.5,0,0,alpha=.2)) + guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
+
+p
+# 
+# c19dp_plot = ggarrange(c19dp_1,c19dp_2)
+# c19dp_plot
+
+```
+```{r eval=TRUE, fig.width=12,fig.height=8, echo=FALSE}
+
+gisaid_2 = ggplot(main_df, aes((GISAID.total.Submissions), (main_df$People_fully_vaccinated))) + geom_point(aes(color = continent,size = `Genomes per confirmed full vaccine (GISAID)`), alpha = 75 /
+                                                                                      100) + geom_text(
+                                                                                        aes(
+                                                                                          label = Country,
+                                                                                          color = continent
+                                                                                        ),
+                                                                                        nudge_y = 0.06
+                                                                                      ) + dark_theme() +   labs(
+                                                                                        x = "Sequenced Genomes",
+                                                                                        y = "People Fully Vaccinated",
+                                                                                        title = "People Fully Vaccinated vs. \nSequenced Genomes in the GISAID Open Database",
+                                                                                        caption = "\nFig. 2: The proportion of people fully vaccinated and global SARS-CoV-2 cases sequenced and shared on the GISAID database until Febuary 28 2022\n The size of each circle is proportional to the number of SARS-CoV-2 genomes sequenced per number of confirmed cases. Countries are colored by continent.\n\nSARS-CoV-2 Data: John Hopkins",
+                                                                                      )  + scale_y_log10() + scale_x_log10() + geom_rug(col=rgb(.5,0,0,alpha=.2)) + guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
+
+gisaid_2
+
+      
+```
+
+## Bar Chart Race (Countries with greater than 5000 sequence submissions)
+```{r eval=TRUE, fig.width=12,fig.height=8, echo=FALSE, warning=FALSE,message=FALSE}
+countries = main_df %>% filter(GISAID.total.Submissions > 5000) %>% select(Country)
+gisaid_barplot = inner_join(gisaid,countries)
+gisaid_barplot %>%
+  barChartRace(
+    x = "GISAID.total.Submissions",
+    y = "Country",
+    time = "Date",
+    ytitle = "Country",
+    xtitle = "Count (n submissions)",
+    title = "Global GISAID EpiCov Database Submissions",
+    paddingWidth = 0.1,
+    xFontSize = 10,
+    yFontSize = 10,
+    xticks = 12,
+    xtitleFontSize = 14,
+    ytitleFontSize = 14,
+    titleFontSize = 22,
+    stroke = "black",
+    strokeWidth = NULL,
+    font = "gochi",
+    bgcol = "#cf2e2e",
+    panelcol = "#fcb900",
+    xgridlinecol = "#8ed1fc",
+    opacity = 1,
+    timeLabel = TRUE,
+    timeLabelOpts = list(size = 28, prefix = "", suffix = "", xOffset = 0.5, yOffset = 1),
+    width = NULL,
+    height = NULL
+  )
+```
+
+# Covid-19 Data Portal comparison
+```{r eval=TRUE, fig.width=12,fig.height=8, echo=FALSE}
+
+####
+c19dp_1 = ggplot(main_df, aes(C19DP.total.Submissions, cases)) + geom_point(aes(color = continent,size=`Genomes per confirmed cases (C19DP)`),alpha = 75 /
+                                                                                            100) + geom_text(
+                                                                                              aes(label = Country,
+                                                                                                  color = continent),
+                                                                                              nudge_y = 0.06
+                                                                                            ) + dark_theme() +   labs(
+                                                                                              x = "Sequenced Genomes",
+                                                                                              y = "Confirmed Cases",
+                                                                                              title = "Confirmed Covid-19 Cases vs. \nSequenced Genomes in the Covid-19 Data Portal",
+                                                                                              caption = "\nFig. 3: The proportion of global SARS-CoV-2 cases sequenced and shared on the C19DP database until Febuary 28 2022\n The size of each circle is proportional to the number of SARS-CoV-2 genomes sequenced per number of confirmed cases. Countries are colored by continent.\n\nSARS-CoV-2 Data: John Hopkins"
+                                                                                            )  + scale_y_log10() + scale_x_log10() + geom_rug(col=rgb(.5,0,0,alpha=.2))  + guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
+
+c19dp_1
+
+
+```
+
+```{r eval=TRUE, fig.width=12,fig.height=8, echo=FALSE}
+
+####
+c19dp_2=ggplot(main_df, aes((C19DP.total.Submissions), (main_df$People_fully_vaccinated))) + geom_point(aes(size=`Genomes per confirmed full vaccine (C19DP)`,color = continent), alpha = 75 /
+                                                                                                            100) + geom_text(
+                                                                                                              aes(
+                                                                                                                label = Country,
+                                                                                                                color = continent
+                                                                                                              ),
+                                                                                                              nudge_y = 0.06
+                                                                                                            ) + dark_theme() +   labs(
+                                                                                                              x = "Sequenced Genomes",
+                                                                                                              y = "People Fully Vaccinated",
+                                                                                                              title = "People Fully Vaccinated vs. \nSequenced Genomes in the Covid-19 Data Portal",
+                                                                                                              caption = "\nFig. 4: The proportion of people fully vaccinated and global SARS-CoV-2 cases sequenced and shared on the C19DP database until Febuary 28 2022\n The size of each circle is proportional to the number of SARS-CoV-2 genomes sequenced per number of confirmed cases. Countries are colored by continent.\n\nSARS-CoV-2 Data: John Hopkins",
+                                                                                                            )  + scale_y_log10() + scale_x_log10() + geom_rug(col=rgb(.5,0,0,alpha=.2))   + guides(shape = guide_legend(order = 2),col = guide_legend(order = 1))
+
+
+c19dp_2
+
+
+```
