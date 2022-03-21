@@ -1,3 +1,23 @@
+## ---------------------------
+##
+## Script name: data-wrangle.r
+##
+## Purpose of script: Download and transform data from GISAID, Covid-19 Data Portal and John Hopkins
+##
+## Author: Nathanael Sheehan
+##
+## Date Created: 2022-03-21
+##
+## Copyleft (c) Nathanael Sheehan, 2022
+## Email: nathanaelsheehan@gmail.co.uk
+##
+## ---------------------------
+##
+## Notes:
+##
+##
+## ---------------------------
+
 ##########################################################################
 ##  Download latest John Hopkins global Covid-19 cases & vaccines data  ##
 ##########################################################################
