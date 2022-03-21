@@ -1,11 +1,11 @@
 #################################################################
 ##                           Library                           ##
 #################################################################
-pkgs = c("tidyverse",
-         "ddplot",
-         "countrycode",
-         "showtext",
-         "ggpubr")
+pkgs = c("tidyverse",# data cleaning
+         "ddplot", # barchar plot
+         "countrycode",# geocode continents
+         "showtext", # use custom fonts
+         "ggpubr") # stick plots together
 installed_pkgs = pkgs %in% rownames(installed.packages())
 if (any(installed_pkgs == FALSE)) {
   install.packages[!installed_pkgs]
@@ -21,7 +21,7 @@ fetch_data = function(url,path) {
   path = path
   download.file(url,path)
   read.csv(path)
-}
+} # Fetch data
 dark_theme = function() {
   theme(
     # add border 1)
@@ -59,8 +59,8 @@ dark_theme = function() {
     # legend at the bottom 6)
     legend.position = "bottom"
   )
-}
+} # Dark theme
 wss = function(k) {
   kmeans(b, k, nstart = 10 )$tot.withinss
-}
-options(scipen=999)
+} # Weighted submitted statistic
+options(scipen=999) # Turn off scientific notation
