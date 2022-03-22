@@ -1,3 +1,4 @@
+
 ## ---------------------------
 ##
 ## Script name: data-wrangle.r
@@ -23,7 +24,7 @@
 ##########################################################################
 ##### CASES
 jh_global_covid = fetch_data(url = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv",
-                             path = "data/covid-jh.csv" ## fetch latest github data
+                             path = "data-raw/covid-jh.csv" ## fetch latest github data
 ) %>%
   select(-c(Lat, Long)) %>% # be gone lat long
   rename(Country = 2) %>%
@@ -80,7 +81,7 @@ jh_global_covid = aggregate(. ~ Country, jh_global_covid,  FUN = sum)
 
 #### VACCINES
 jh_vaccine = fetch_data(url = "https://raw.githubusercontent.com/govex/COVID-19/master/data_tables/vaccine_data/global_data/vaccine_data_global.csv",
-                        path = "data/js-vac.csv") %>%
+                        path = "data-raw/js-vac.csv") %>%
   select(Province_State,Country_Region, Doses_admin,People_partially_vaccinated,People_fully_vaccinated,Date) %>%
   select(-c(Date)) %>%
   rename(Country = Country_Region) %>%
@@ -270,44 +271,17 @@ jh_vaccine = fetch_data(url = "https://raw.githubusercontent.com/govex/COVID-19/
 
 jh_vaccine = aggregate(. ~ Country, jh_vaccine, FUN = sum)
 
-# > head(jh_vaccine)
-# Country Doses_admin People_partially_vaccinated People_fully_vaccinated
-# 1         Afghanistan     5535254                     4907058                 4231984
-# 2             Albania     2707658                     1269746                 1196277
-# 3             Algeria    13461201                     7456361                 6076272
-# 4             Andorra      142420                       57797                   53250
-# 5              Angola    15505389                    10591264                 5448403
-# 6 Antigua and Barbuda      124726                       63492                   60963
-
-
-
-
-#continents_df = aggregate(. ~ continent, main_df, FUN = sum)
-
-# Missing Covid data from JH
-# [1] "Hong Kong"                "Puerto Rico"              "Myanmar"                  "Guam"
-# [5] "Palestine"                "Northern Mariana Islands" "Sint Maarten"             "U.S. Virgin Islands"
-# [9] "Canary Islands"           "British Virgin Islands"   "Crimea"                   "Saint Martin"
-# [13] "Faroe Islands"            "American Samoa"           "Sint Eustatius"
-
-# plot log plots
-# plot bivariate plots
-# cluster analysis using DBSCAN, k-means, Hierarchical
-# Output globe dataset for web vis
-#
-#
-#
 
 #################################################################
 ##             Covid-19 Data Platform Monthly Data             ##
 #################################################################
-if (!file.exists("data/emi-api-data.tsv")) {
+if (!file.exists("data-raw/emi-api-data.tsv")) {
   # This file is very large, and in fact does not use the traditional API for the CD19DP due to its one million cap limit.
   url = "https://www.ebi.ac.uk/ena/portal/api/search?result=sequence&query=tax_tree(2697049)&fields=accession%2Cagricola_id%2Caltitude%2Cbase_count%2Cbio_material%2Ccell_line%2Ccell_type%2Ccollected_by%2Ccollection_date%2Ccountry%2Ccultivar%2Cculture_collection%2Cdataclass%2Cdescription%2Cdev_stage%2Cdoi%2Cdoi_url%2Cecotype%2Cenvironmental_sample%2Cfirst_public%2Cgermline%2Chaplotype%2Chost%2Cidentified_by%2Cisolate%2Cisolation_source%2Ckeywords%2Clab_host%2Clast_updated%2Clocation%2Cmating_type%2Cmetagenome_source%2Cmol_type%2Corganelle%2Cpatent_number%2Cplasmid%2Cpubmed_id%2Cpubmed_url%2Csample_accession%2Cscientific_name%2Csequence_md5%2Csequence_version%2Cserotype%2Cserovar%2Csex%2Cspecimen_voucher%2Cstrain%2Cstudy_accession%2Csub_species%2Csub_strain%2Csubmitted_sex%2Ctax_division%2Ctax_id%2Ctissue_lib%2Ctissue_type%2Ctopology%2Cvariety&format=tsv&limit=0"
   path = "emi-api-data.csv"
   download.file(url, path)
 } else {
-  cd19_agg_data_raw = data.table::fread("data/emi-api-data.tsv")
+  cd19_agg_data_raw = data.table::fread("data-raw/emi-api-data.tsv")
   cd19_agg_data_raw$country = gsub("(.*):.*", "\\1", cd19_agg_data_raw$country)
 
   cd19_agg_data = cd19_agg_data_raw %>%
@@ -330,9 +304,11 @@ if (!file.exists("data/emi-api-data.tsv")) {
         Country == "Viet Nam" ~ "Vietnam",
         TRUE ~ Country
       )
-    )
+    ) %>%
+    rename(CD19DP.monthly.submissions = Count)
 
-  cd19_agg_data$CD19DP.total.Submissions = ave(cd19_agg_data$Count, cd19_agg_data$Country, FUN = cumsum)
+  cd19_agg_data$CD19DP.total.Submissions = ave(cd19_agg_data$CD19DP.monthly.submissions, cd19_agg_data$Country, FUN = cumsum)
+  write_rds(cd19_agg_data,"data/cd19_agg_data.RDS")
   rm(cd19_agg_data_raw)
 }
 
@@ -341,7 +317,7 @@ if (!file.exists("data/emi-api-data.tsv")) {
 ##################################################################
 # GISAID monthly metadata submissions downloaded from https://www.epicov.org/epi3/frontend#5dc229
 gisaid = as.data.frame(
-  readxl::read_xlsx("data/gisaid_monthly_submissions_global_2022-03-20.xlsx") %>%
+  readxl::read_xlsx("data-raw/gisaid_monthly_submissions_global_2022-03-20.xlsx") %>%
     rename(Country = ...1) %>%
     mutate(
       Country = case_when(
@@ -354,26 +330,38 @@ gisaid = as.data.frame(
     filter(Date != "country_total") %>%
     mutate(Date = paste0(substr(Date, 4, 8), "/", substr(Date, 1, 2))) %>%
     filter(Country != "monthly total:")
-)
-gisaid$GISAID.total.Submissions = ave(gisaid$Count, gisaid$Country, FUN = cumsum)
+) %>% rename(GISAID.monthly.submissions = Count)
+gisaid$GISAID.total.Submissions = ave(gisaid$GISAID.monthly.submissions, gisaid$Country, FUN = cumsum)
 
-latest_gisaid = gisaid %>% filter(Date == "2022/02") %>% arrange(desc(GISAID.total.Submissions))
+write_rds(gisaid,"data/gisaid.RDS")
 
 #################################################################
 ##                          Join Data                          ##
 #################################################################
-main_df = cd19_agg_data %>%
-  right_join(gisaid)
-  select(-c(Date, Raw.reads.submitted, Count)) %>%
-  rename(C19DP.total.Submissions = Sequences.submitted) %>%
+main_df = gisaid %>%
+  right_join(cd19_agg_data) %>%
   left_join(jh_global_covid) %>%
-  left_join(jh_vaccine) %>%
-  na.omit(cases) %>%
+  left_join(jh_vaccine)  %>%
+  mutate_all(~ replace(., is.na(.), 0)) %>%
   mutate("Genomes per confirmed cases (GISAID)" = GISAID.total.Submissions / cases) %>%
-  mutate("Genomes per confirmed cases (C19DP)" =  C19DP.total.Submissions / cases) %>%
-  mutate("Genomes per confirmed full vaccine (GISAID)" = GISAID.total.Submissions / cases) %>%
-  mutate("Genomes per confirmed full vaccine (C19DP)" =  C19DP.total.Submissions / cases)
+  mutate("Genomes per confirmed cases (C19DP)" =  CD19DP.total.Submissions / cases) %>%
+  mutate("Genomes per confirmed full vaccine (GISAID)" = GISAID.total.Submissions / People_fully_vaccinated) %>%
+  mutate("Genomes per confirmed full vaccine (C19DP)" =  CD19DP.total.Submissions / People_fully_vaccinated)
 
 main_df$continent = countrycode(sourcevar = main_df[, "Country"],
                                 origin = "country.name",
                                 destination = "continent")
+
+write_rds(main_df,"data/main_df.RDS")
+
+gisaid_temporal_subs = gisaid %>% group_by(Date) %>% summarise(sum_gisaid = sum(GISAID.monthly.submissions)) %>% arrange(Date)
+cd19dp_temporal_subs = cd19_agg_data %>% group_by(Date) %>% summarise(sum_cd19dp = sum(CD19DP.monthly.submissions)) %>% arrange(Date)
+gisaid_temporal_subs_av = gisaid %>% group_by(Date) %>% summarise(sum_gisaid_av = mean(GISAID.monthly.submissions)) %>% arrange(Date)
+cd19dp_temporal_subs_av = cd19_agg_data %>% group_by(Date) %>% summarise(sum_cd19dp_av = mean(CD19DP.monthly.submissions)) %>% arrange(Date)
+
+temporal_sub_all =right_join(gisaid_temporal_subs,cd19dp_temporal_subs) %>%
+  right_join(gisaid_temporal_subs_av) %>%
+  right_join(cd19dp_temporal_subs_av) %>%
+  mutate_all(~ replace(., is.na(.), 0))
+
+write_rds(temporal_sub_all,"data/temporal_sub_all.RDS")

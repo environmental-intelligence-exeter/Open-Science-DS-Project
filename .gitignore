@@ -48,4 +48,4 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-/data/emi-api-data.tsv
+/data-raw/emi-api-data.tsv

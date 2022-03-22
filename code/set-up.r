@@ -4,7 +4,7 @@
 ##
 ## Purpose of script: Install packages needed for project and set up helper functions.
 ##
-## Author:Nathaneal Sheehan
+## Author: Nathaneal Sheehan
 ##
 ## Date Created: 2021-03-20
 ##
@@ -25,13 +25,16 @@ pkgs = c("tidyverse",# data cleaning
          "ddplot", # barchar plot
          "countrycode",# geocode continents
          "showtext", # use custom fonts
-         "ggpubr") # stick plots together
+         "ggpubr",
+         "plotly",
+         "od") # stick plots together
 installed_pkgs = pkgs %in% rownames(installed.packages())
 if (any(installed_pkgs == FALSE)) {
   install.packages[!installed_pkgs]
 }
 invisible(lapply(pkgs, library, character.only = TRUE))
 rm(installed_pkgs, pkgs)
+
 font_add_google("Ubuntu", "ub")
 ##################################################################
 ##                       Helper Functions                       ## thanx for helpin
@@ -66,15 +69,15 @@ dark_theme = function() {
     axis.text = element_text(
       colour = "white",
       face = "italic",
-      family = "sans"
+      family = "ub"
     ),
-    axis.title = element_text(colour = "white", family = "sans"),
+    axis.title = element_text(colour = "white", family = "ub"),
     axis.ticks = element_line(colour = "white"),
     plot.background = element_rect(fill = "#cf2e2e"),
-    plot.title = element_text(family = "sans", hjust = .5, size = 16),
-    plot.subtitle = element_text(family = "sans", hjust = .5, size = 12),
+    plot.title = element_text(family = "ub", hjust = .5, size = 16),
+    plot.subtitle = element_text(family = "ub", hjust = .5, size = 12),
     legend.background = element_rect(fill = "#cf2e2e"),
-    legend.text  = element_text(color = "white", family = "sans", size = 10),
+    legend.text  = element_text(color = "white", family = "ub", size = 10),
     legend.key = element_rect(fill = "#cf2e2e"),
     # legend at the bottom 6)
     legend.position = "bottom"
