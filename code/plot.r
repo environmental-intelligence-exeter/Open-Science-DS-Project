@@ -176,3 +176,22 @@ cd19_agg_data %>%
     width = NULL,
     height = NULL
   )
+
+who_world_map = dimaqdata::who_world_map
+
+data = main_df %>%
+  dplyr::filter(Date == "2022/02") %>%
+  dplyr::rename(CNTRY_TERR=Country) %>%
+  as.data.frame()
+
+data = left_join(who_world_map,data)
+
+mat = data
+rownames(mat) = mat[,1]
+mat = mat %>% dplyr::select(-Country, -Group, -Continent)
+
+# Matrix format
+mat <- data
+rownames(mat) <- mat[,1]
+
+mat <- as.matrix(mat)

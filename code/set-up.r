@@ -26,8 +26,9 @@ pkgs = c("tidyverse",# data cleaning
          "countrycode",# geocode continents
          "showtext", # use custom fonts
          "ggpubr",
-         "plotly",
-         "od") # stick plots together
+         "cluster",
+         "factoextra",
+         "plotly") # stick plots together
 installed_pkgs = pkgs %in% rownames(installed.packages())
 if (any(installed_pkgs == FALSE)) {
   install.packages[!installed_pkgs]
@@ -83,7 +84,4 @@ dark_theme = function() {
     legend.position = "bottom"
   )
 } # Dark theme
-wss = function(k) {
-  kmeans(b, k, nstart = 10 )$tot.withinss
-} # Weighted submitted statistic
 options(scipen=999) # Turn off scientific notation
