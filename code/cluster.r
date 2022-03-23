@@ -22,6 +22,8 @@
 ##                          Clustering                          ##
 ##################################################################
 
+set.seed(0110)
+
 # Clustering Dataframe
 cluster_df = main_df %>% dplyr::filter(Date == "2022/02") %>%
   select(
@@ -36,7 +38,9 @@ cluster_df = main_df %>% dplyr::filter(Date == "2022/02") %>%
     People_partially_vaccinated,
     People_fully_vaccinated
   )
-) %>% na.omit()
+) %>% # remove outliers UK and USA.
+  dplyr::filter(Country != "United Kingdom") %>% dplyr::filter(Country != "USA") %>%
+  na.omit()
 cluster_df = cluster_df[-102,] # remove turkey duplicate
 cluster_df[2:9] = scale(cluster_df[2:9])
 cluster_df = data.frame(cluster_df[, -1], row.names = cluster_df[, 1])
@@ -47,9 +51,11 @@ cluster_df = data.frame(cluster_df[, -1], row.names = cluster_df[, 1])
 #################################################################
 # Calculate optimal number of clusters
 fviz_nbclust(cluster_df, kmeans, method = "silhouette") # = 3
-fviz_nbclust(cluster_df, kmeans, method = "wss") # = 4
+fviz_nbclust(cluster_df, kmeans, method = "wss") # = 3
 fviz_nbclust(cluster_df, kmeans, method = "gap_stat") # = 9
 
+# Dissimilarity matrix
+d = dist(cluster_df,method = "euclidean")
 ## HCLUST
 # vector of methods to compare
 meth = c( "average", "single", "complete", "ward", "weighted")
@@ -74,17 +80,18 @@ map_dbl(met, metric_test)
 # euclidean manhattan
 # 0.9856494 0.9856494
 
-# Dissimilarity matrix
-d = dist(cluster_df,metric = "euclidean")
 # Hierarchical clustering
 hc1 = hclust(d, method = "ward" )
 # Plot the obtained dendrogram
 plot(hc1, cex = 0.6, hang = -1)
 
-k4 = cutree(hc1, k = 4)
+k3 = cutree(hc1, k = 4)
 k9 = cutree(hc1, k = 9)
-fviz_cluster(list(data = cluster_df, cluster = k4))
-fviz_cluster(list(data = cluster_df, cluster = k9))
+k3_plot = fviz_cluster(list(data = cluster_df, cluster = k3))
+k9_plot = fviz_cluster(list(data = cluster_df, cluster = k9))
+saveRDS(k3_plot,"data/k3_plot.RDS")
+saveRDS(k9_plot,"data/k9_plot.RDS")
+
 
 
 # mat = as.matrix(cluster_df)

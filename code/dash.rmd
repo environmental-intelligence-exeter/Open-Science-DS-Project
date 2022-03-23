@@ -17,11 +17,13 @@ color:black!important;
 </style> 
 
 ```{r setup, include=FALSE}
-source("../code/set-up.r")
+source("set-up.r")
 main_df = readRDS("../data/main_df.rds")
 temporal_sub_all = readRDS("../data/temporal_sub_all.rds")
 cd19_agg_data = readRDS("../data/cd19_agg_data.RDS")
 gisaid = readRDS("../data/gisaid.RDS")
+k3 = readRDS("../data/k3_plot.RDS")
+k9 = readRDS("../data/k9_plot.RDS")
 ```
 
 ### Fig. 1: Monthly totals of global SARS-CoV-2 cases sequenced and shared on the GISAID and Covid-19 Data Platform database until Febuary 22 2022.
@@ -258,6 +260,26 @@ gisaid %>%
     width = NULL,
     height = NULL
   )
+```
+
+***
+
+
+
+### Fig. 9 Clustering (4)
+
+```{r}
+ggplotly(k3)
+
+```
+
+***
+
+### Fig. 9 Clustering (9)
+
+```{r}
+ggplotly(k9)
+
 ```
 
 ***
