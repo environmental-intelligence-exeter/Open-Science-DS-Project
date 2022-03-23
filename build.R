@@ -22,10 +22,10 @@
 #################################################################
 ##                          Read Data                          ##
 #################################################################
-main_df = readRDS("../data/main_df.rds")
-temporal_sub_all = readRDS("../data/temporal_sub_all.rds")
-cd19_agg_data = readRDS("../data/cd19_agg_data.RDS")
-gisaid = readRDS("../data/gisaid.RDS")
+main_df = readRDS("data/main_df.rds")
+temporal_sub_all = readRDS("data/temporal_sub_all.rds")
+cd19_agg_data = readRDS("data/cd19_agg_data.RDS")
+gisaid = readRDS("data/gisaid.RDS")
 #################################################################
 ##                        Run Dashboard                        ##
 #################################################################
