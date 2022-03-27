@@ -13,7 +13,7 @@
 \usepackage{microtype}      % microtypography
 \usepackage{graphicx}
 
-\title{R in Trust - A Case study of SARS-CoV2 Open Data Repositories}
+\title{Responsible Repositories}
 
 \author{
     Nathanael Sheehan
@@ -57,55 +57,138 @@ In this paper I aruge on the importance of TRUST
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Open Science has transformed the classical modus operandi of scientific
-knowledge accumulation and dissemination. The pandemic highlighted the
-necessity for rapid, scalable and open access to the latest research
-findings, treatments and protocols on the cornavirus. Now exists
-hundreds of thousands data repsotiores storing data on the biological
-enitity Data repostiores have been buuilt by Governments, univieristies,
-busisinerses and publics The greatest example of this has been the
-sharing of SARS genomic data, where millions of genomes have been shared
-across the world During the Pandemic an open letter was written by the
-EBI in support in complete openness in genome sharing and asked for
-people to donate all data to a traid of databases Many public figures
-and institutions supported the letter saying that coivd was bigger than
-all of us, and we must come together Others critiseied the letter and
-argued that there database was a wolf in open source clothing and missed
-the point in resonsibility for data sharing
+The effectiveness of disseminating results promptly, sometimes even
+before having them formally published -- thereby speeding up research -
+has been extolled by scientific and popular media alike, most evidently
+in relationto the prompt dissemination of genetic sequencing data from
+various strains of the SARSCOV-2 virus (an exemplary instance of `Open
+Data') and the decision by publishing companies to temporarily release
+all coronavirus-related papers without charges (`Open Access'). As the
+United Nations joins the choir of OS supporters with its 2021
+recommendation to implement OS worldwide, the OS movement looks
+well-positioned to determine the future of post-pandemic research and
+related policies. This shift in research practice - in conjunction with
+decreasing costs in data storage - has led to the latest research
+findings, treatments and protocols on Covid-19 and related topics
+becoming freely avalalible on the internet.
 
-This shift in research practice - in conjunction with decreasing costs
-in data storage - has led to an exponential increase in ``big'' data and
-public repositories that stores such data. This new found importance for
-data repostiores mea
+Belief in misinformation about COVID-19 poses a potential risk to public
+health; therefore, scientists play a key role as disseminators of
+factual and reliable information (Roozenbeek et al., 2020) In an Open
+Science context, the TRUST (Transparency, Responsibility, User Focus,
+Sustainability, and Technology ) principles highlight a set of
+guidelines to demonstrate the trustworthiness of a digital repository to
+many of the stakeholders involved, including researchers, community
+users, funders, developers and service providers. ``Trustworthiness is
+demonstrated through evidence, which depends on transparency, and thus
+repositories must provide transparent, honest, and verifiable evidence
+of their practice. In this way, stakeholders can be confident that
+repositories ensure data integrity, authenticity, accuracy, reliability,
+and accessibility over extended time frames. Trustworthiness is not a
+one-off achievement; it cannot be taken for granted without regular
+audit and certification'' (Lin et al 2020)
 
-TRUSt is a set of principles for data repositiores owners to adhere to
-so the community is served and they demonstate the ability to mananage
-the data they hold T = transparancey U = User focus, S = Sustainablity,
-T = Trust R = Adhering to the designated community's metadata and
-curation standards, along with providing stewardship of the data
-holdings e.g.~technical validation, documentation, quality control,
-authenticity protection, and long-term persistence.
+\hypertarget{method}{%
+\section{Method}\label{method}}
 
-Providing data services e.g.~portal and machine interfaces, data
-download or server-side processing.
+propose metric for evaluating ``R,'' as done with FAIR principles
 
-Managing the intellectual property rights of data producers, the
-protection of sensitive information resources, and the security of the
-system and its content. The FAIR Data Principles3 highlight the need to
-embrace good practice by defining essential characteristics of data
-objects to ensure that data are reusable by humans and machines The Open
-Archival Information System (OAIS) reference model4 provides
-recommendations on setting up archives delivering long-term preservation
-of and access to information (in particular, digital information) and
-creating preservation packages. None of these encapsulate trust and
-tremporal demand that trust takes to build and serve a community
-{[}trust table {]}
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
 
-To start I document my expereince joining each community and
-qualiotaitely narrate me expereince conceptaulising the R principles in
-each repo I then systhensis the datasets into aggreated months and
-explore statistical trends in each dataset I conclusde by a final
-discourse on how
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{2}
+\item
+  suggest that this metric is insufficient or anyhow ambiguous, because
+  it takes no account of an additional and central factor in assessing
+  responsibility: i.e.~underpinning interpretation of what counts as
+  responsible openness
+\item
+  suggest that this should be added as a crucial additional factor for
+  R, BUT also that this cannot be easily transformed into a binary
+  metric (1-0) -- we are looking at qualitative differences
+\item
+  discuss how this works out in case og GISAID vs COVID-19 portal: here
+  we have a clash of ideologies and experiences of what constitutes
+  ``good'' openness
+\end{enumerate}
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  conclusion: there is much that CAN be done to metricise and evaluate
+  TRUST principles as a key complement to FAIR, however even such
+  evaluation needs to highlight the unavoidable
+  qualitative/interpretative differences in the implementation of
+  openness
+\end{enumerate}
+
+Repository
+
+R1.1 Complete Metadata
+
+R1.2 Techincal Documentation
+
+R1.3 Quality Control
+
+R1.4 Authenticity Protection
+
+R2.1 Reliable Data Services
+
+R3.1 Manage IP of Data Producers
+
+R3.2 Security of System \& Content
+
+Score
+
+{GISAID }
+
+{0.5}
+
+{0.5}
+
+{1}
+
+{1}
+
+{1.0}
+
+{1}
+
+{0.5}
+
+{5.5}
+
+{Covid-19 Data Platform}
+
+{0.5}
+
+{0.5}
+
+{1}
+
+{0}
+
+{0.5}
+
+{0}
+
+{0.5}
+
+{3.0}
+
+Albiet, TRUST is not a new concept and a number of trustworthiness
+certification mechanisms already exist; The Open Archival Information
+System (OAIS) provides a recommendation model to provide long-term
+preservation and access to digital information{[}REF{]}. The FAIR
+principles emphasize a best practice of machine and human re-usability
+with data objects.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -116,25 +199,6 @@ discourse on how
 \caption{Monthly totals of global SARS-CoV-2 cases sequenced and shared
 on the GISAID and Covid-19 Data Platform database until Febuary 22 2022}
 \end{figure}
-
-\hypertarget{gisiad}{%
-\subsection{GISIAD}\label{gisiad}}
-
-In May of 2008 the Global Initiative on Sharing All Influenza Data
-(GISAID) was launched in tandem with the Sixty-first World Health
-Assembly. GISAID From its inceptions GISAID was built to be an
-alternative to the classical public domain sharing model as it took into
-account the beliefs of Member states by providing an accessible database
-designed by scientists for scientists.
-
-\hypertarget{covid-19-data-platform}{%
-\subsection{COVID-19 Data Platform}\label{covid-19-data-platform}}
-
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
-
-\hypertarget{conclusion}{%
-\section{Conclusion}\label{conclusion}}
 
 \bibliographystyle{unsrt}
 \bibliography{references.bib}

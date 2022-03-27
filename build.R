@@ -13,11 +13,10 @@
 ##
 ## ---------------------------
 ##
-## Notes: Run for analysis at ones own peril. The process involves a 2GB tsv file being downloaded onto your local machine.
+## Notes: Run full analysis at ones own peril. The process involves a 2GB tsv file being downloaded onto your local machine.
 ##
 ##
 ## ---------------------------
-
 
 #################################################################
 ##                          Read Data                          ##
@@ -26,6 +25,8 @@ main_df = readRDS("data/main_df.rds")
 temporal_sub_all = readRDS("data/temporal_sub_all.rds")
 cd19_agg_data = readRDS("data/cd19_agg_data.RDS")
 gisaid = readRDS("data/gisaid.RDS")
+
+present = main_df %>% dplyr::filter(Date == "2022/02")
 #################################################################
 ##                        Run Dashboard                        ##
 #################################################################
