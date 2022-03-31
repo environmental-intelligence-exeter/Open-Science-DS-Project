@@ -26,30 +26,7 @@ temporal_sub_all = readRDS("data/temporal_sub_all.rds")
 cd19_agg_data = readRDS("data/cd19_agg_data.RDS")
 gisaid = readRDS("data/gisaid.RDS")
 
-present = main_df %>% dplyr::filter(Date == "2022/02")
 
-treemap(present,
-        index=c("continent", "Country"),
-        vSize="GISAID.total.Submissions",
-        type="index",
-        title = "GISAID EpiCov global sequence share",
-        fontfamily.title = "mono",
-        fontsize.title = 24,
-        fontsize.labels=c(12,9),
-        fontcolor.labels=c("white","black"),
-        fontface.labels=c(2,1),
-        bg.labels=c("transparent"),
-        palette="RdYlGn",
-        range=c(-20000,30000),
-        align.labels=list(
-          c("center", "center"),
-          c("right", "top")),
-        overlap.labels=0.5,
-        inflate.labels=F,
-)
-
-
-)
 #################################################################
 ##                        Run Dashboard                        ##
 #################################################################

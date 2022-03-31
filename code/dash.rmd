@@ -284,3 +284,56 @@ ggplotly(k9)
 
 ***
 
+***
+### Fig.10 GISAID Share
+```{r}
+library(treemap)
+present = main_df %>% dplyr::filter(Date == "2022/02")
+
+treemap(present,
+        index=c("continent", "Country"),
+        vSize="GISAID.total.Submissions",
+        type="index",
+        title = "GISAID EpiCov global \nsequence share",
+        fontfamily.title = "mono",
+        fontsize.title = 24,
+        fontsize.labels=c(12,9),
+        fontcolor.labels=c("white","black"),
+        fontface.labels=c(2,1),
+        bg.labels=c("transparent"),
+        palette="RdYlGn",
+        align.labels=list(
+          c("center", "center"),
+          c("right", "top")),
+        overlap.labels=0.5,
+        inflate.labels=F,
+)
+```
+
+***
+### Fig.10 EBI Global Share
+```{r}
+library(treemap)
+present = main_df %>% dplyr::filter(Date == "2022/02")
+
+treemap(present,
+        index=c("continent", "Country"),
+        vSize="CD19DP.total.Submissions",
+        type="index",
+        title = "EBI EpiCov \nglobal sequence share",
+        fontfamily.title = "mono",
+        fontsize.title = 24,
+        fontsize.labels=c(12,9),
+        fontcolor.labels=c("white","black"),
+        fontface.labels=c(2,1),
+        bg.labels=c("transparent"),
+        palette="RdYlGn",
+        align.labels=list(
+          c("center", "center"),
+          c("right", "top")),
+        overlap.labels=0.5,
+        inflate.labels=F,
+)
+```
+
+***
