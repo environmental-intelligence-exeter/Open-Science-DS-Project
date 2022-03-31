@@ -12,7 +12,7 @@ authors:
     location: University of Exeter, St Germans Road, EX4 7HD Exeter, UK
     email: s.leonelli@exeter.ac.uk
 abstract: |
-  In this paper I aruge on the importance of TRUST 
+
 keywords:
   - SARS-CoV2
   - Open Science
@@ -21,131 +21,166 @@ bibliography: references.bib
 biblio-style: unsrt
 output: rticles::arxiv_article
 always_allow_html: true
+
 ---
 
 # Introduction
 
-The effectiveness of disseminating results promptly, sometimes even before having them formally published – thereby speeding up research - has been extolled by scientific and popular media alike, most evidently in relation to the prompt dissemination of genetic sequencing data from various strains of the SARSCOV-2 virus (an exemplary instance of ‘Open Data’) and the decision by publishing companies to temporarily release all coronavirus-related papers without charges (‘Open Access’). As the United Nations joins the choir of OS supporters with its 2021 recommendation to implement OS worldwide, the OS movement looks well-positioned to
-determine the future of post-pandemic research and related policies. This shift in research practice - in conjunction with decreasing costs in data storage - has led to the latest research findings, treatments and protocols on Covid-19 and related topics becoming freely avalalible on the internet. 
+The pandemic demanded rapid, scalable and open access to the latest research findings, treatments and protocols on the coronavirus. This shift in research practice - in conjunction with decreasing costs in data storage - has led to an exponential increase in data repositories becoming publicly accessible online, as well as a global recognition of Open Science (OS) principles by the United Nations [REF]. However, during the same time, a wider discourse emerged among policy circles and researchers with concern to the responsibility of repositories reporting on COVID-19 and related topics, most evidently in relation to the prompt dissemination of genetic sequencing data from various strains of the SARS COV-2 virus. 
 
-Belief in misinformation about COVID-19 poses a potential risk to public health; therefore, scientists play a key role as disseminators of factual and reliable information (Roozenbeek et al., 2020)
-In an Open Science context, the TRUST (Transparency, Responsibility, User Focus, Sustainability, and Technology ) principles highlight a set of guidelines to demonstrate the trustworthiness of a digital repository to many of the stakeholders involved, including researchers, community users, funders, developers and service providers. "Trustworthiness is demonstrated through evidence, which depends on transparency, and thus repositories must provide transparent, honest, and verifiable evidence of their practice. In this way, stakeholders can be confident that repositories ensure data integrity, authenticity, accuracy, reliability, and accessibility over extended time frames. Trustworthiness is not a one-off achievement; it cannot be taken for granted without regular audit and certification" (Lin et al 2020)
+On the 29th of January 2021 the governing board of the European Bioinformatics Institute (EBI) posted a public letter in Nature calling for a greater "openness" in sharing SARS-CoV-2 genome data, the letter argued "to unleash the fast flow of research advances" the scientific community must remove all formal barriers which restrict data sharing and share all genome data to one of a triad of state databases (EBI, The Gene Bank USA, Japan Gene repo). At the same time, the Global Initiative on Sharing Avian Influenza Data (GISAID) EpiCov database had just overtaken the EBI's European COVID-19 Data Portal (C19DP) in the volume of genome sequences being shared. GISAID was originally established in 2008 to monitor global influenza outbreaks and is now hosted by the German Institute of Agriculture and the Max Planck institute; the platforms pivot quickly grew in popularity during the pandemic and received a number of philanthropic donations from the World Health Organization, big-pharma and nation states, unlike C19DP, GISAID requires that users confirm their identity and agree not to republish the sites genomes without permission from the data provider.
 
-# Method
-propose metric for evaluating "R", as done with FAIR principles
+@pittphilsci19817 introduces this case study as a clash in "responsible research measures", pointing out how "trustworthy and explicitly non-exploitative conditions for data sharing helps to widen participation in data sharing", in this same line of thought we stipulate that Trust and Responsibility, or a lack of it, plays a central role in the success of OS platforms; hence researchers and data producers alike, must ensure quality and integrity of data when practicing OS principles in order to demonstrate the quality and discipline which OS research demands. 
 
-# Discussion
+The TRUST (Transparency, Responsibility, User Focus, Sustainability, and Technology) principles put forth a set of guidelines to  demonstrate the trustworthiness of a digital repository to many of the stakeholders involved, including researchers, community users, funders, developers and service providers. In an OS context, a number of trustworthiness certification mechanisms already exist; The Open Archival Information System (OAIS) provides a recommendation model to provide long-term preservation and access to digital information [REF] and the FAIR principles emphasize a best practice of machine and human re-usability with data objects. However, Lin et al (2020) argue these frameworks are not suitable for a broader audience and lack a critical understanding of the temporal aspects of a data repository, data may enter a system under a FAIR or OAIS system, however TRUST should not be understood as a single check box, rather it must regularly audited to ensure the system ensures trust for the long run (Lin et al 2020). Repository users should have confidence that data depositors are prompted to provide all metadata compliant with the community norms, as this greatly enhances the discoverability and usefulness of the data. Knowing that a repository verifies the integrity of available data and metadata assures potential users that the data holdings are more likely to be interoperable with other relevant datasets. Both depositors and users must have confidence that the data will remain accessible over time, and thus can be cited and referenced in scholarly publications.  Building on previous discussions on Epistemic diversity and Open Science, we propose a novel metric system based on the description of the R principle in TRUST (Lin et al 2020) to be used in tandem with a qualitative understanding to interpret the philosophical nuances of differing implementations of openness.
 
-(3) suggest that this metric is insufficient or anyhow ambiguous, because it takes no account of an additional and central factor in assessing responsibility: i.e. underpinning interpretation of what counts as responsible openness
+# Methods
 
-(4) suggest that this should be added as a crucial additional factor for R, BUT also that this cannot be easily transformed into a binary metric (1-0) -- we are looking at qualitative differences
+## Definition
+Stakeholders of a repository must take responsibility - legally and ethically- for the data being stored and collected from their user community. Lin et al (2020) delineates responsibility being demonstrated as:
 
-(5) discuss how this works out in case og GISAID vs COVID-19 portal: here we have a clash of ideologies and experiences of what constitutes "good" openness
+- "*Adhering to the designated community’s metadata and curation standards, along with providing stewardship of the data holdings e.g. technical validation, documentation, quality control, authenticity protection, and long-term persistence.*
 
-# Conclusion
+- *Providing data services e.g. portal and machine interfaces, data download or server-side processing.*
 
-(6) conclusion: there is much that CAN be done to metricise and evaluate TRUST principles as a key complement to FAIR, however even such evaluation needs to highlight the unavoidable qualitative/interpretative differences in the implementation of openness
+- *Managing the intellectual property rights of data producers, the protection of sensitive information resources, and the security of the system and its content.*"
 
-```{r fig1, fig.cap = "R metric table", echo=FALSE, message=FALSE, warning=FALSE}
-library(formattable)
-r_score = data.frame(matrix(ncol=8, nrow = 2))
-cols = c("Repository","R1.1 Complete Metadata","R1.2 Techincal Documentation",
-         "R1.3 Quality Control", "R1.4 Authenticity Protection",
-         "R2.1 Reliable Data Services", "R3.1 Manage IP of Data Producers",
-         "R3.2 Security of System & Content"
-)
+We classify our reading of responsibility into three distinct modes which are described by sub classifications metrics. Each metric varies on a scale from 0-1, where 0 indicates the responsibility classification is "not implemented", 0.4 indicates the responsibility classification is "partially implemented" and 0.9 indicates the responsibility classification is "Sufficiently implemented". The total score for each distinct mode is calculated as a mean weighted average from each of its sub classifications. 
+ 
+
+```{r fig1, fig.cap = "Table of Responsiblity Metric", echo=FALSE, message=FALSE, warning=FALSE}
+library(knitr)
+library(kableExtra)
+r_score = data.frame(matrix(ncol = 3, nrow = 5))
+
+cols = c("Metadata Responsibility",
+         "Service Responsibility",
+         "Legal Responsibility")
 colnames(r_score) = cols
 
+mr = c(  "R1.1 Curated Metadata",
+         # metadata which documents the progress of data in the repo to date
+         "R1.2 Techincal Documentation",
+         # documentation online on how to use data services
+         "R1.3 Format Control",
+         # uploading data
+         "R1.4 Content Control",
+         # peer review
+         "R1.5 Authenticated Provinence")
+r_score$`Metadata Responsibility` = mr
 
-# Complete score for GISAID
-r_score$Repository[1] = "GISAID"
-r_score$`R1.1 Complete Metadata`[1] = 0.5
-r_score$`R1.2 Techincal Documentation`[1] = 0.5
-r_score$`R1.3 Quality Control`[1] = 1.0
-r_score$`R1.4 Authenticity Protection`[1] = 1.0
-r_score$`R2.1 Reliable Data Services`[1] = 1.0
-r_score$`R3.1 Manage IP of Data Producers`[1] = 1.0
-r_score$`R3.2 Security of System & Content`[1] = 0.5
+sr = c("R2.1 Reliable Data Services")
+r_score$`Service Responsibility`[1] = sr
 
-
-# Complete score for Covid-19 Data Platform
-r_score$Repository[2] = "Covid-19 Data Platform"
-r_score$`R1.1 Complete Metadata`[2] = 0.5
-r_score$`R1.2 Techincal Documentation`[2] = 0.5
-r_score$`R1.3 Quality Control`[2] = 1.0
-r_score$`R1.4 Authenticity Protection`[2] = 0
-r_score$`R2.1 Reliable Data Services`[2] = 0.5
-r_score$`R3.1 Manage IP of Data Producers`[2] = 0
-r_score$`R3.2 Security of System & Content`[2] = 0.5
-
-# Sum results
-r_score$Score[1] = sum(r_score[1,2:8])
-r_score$Score[2] = sum(r_score[2,2:8])
-
-customGreen0 = "#DeF7E9"
-customGreen = "#71CA97"
-customRed = "#ff7f7f"
-library(DT)
-
-formattable(r_score, align =c("l","c","c","c","c", "c", "c", "c", "r"), list(
-  `Repository` = formatter("span", style = ~ style(color = "grey",font.weight = "bold")),
-  `R1.1 Complete Metadata`= color_tile(customGreen0, customGreen0),
-  `R1.2 Techincal Documentation`= color_tile(customGreen0, customGreen0),
-  `R1.3 Quality Control`= color_tile(customGreen, customGreen),
-  `R1.4 Authenticity Protection`= color_tile(customRed, customGreen),
-  `R2.1 Reliable Data Services`= color_tile(customGreen0, customGreen),
-  `R3.1 Manage IP of Data Producers`= color_tile(customRed, customGreen),
-  `R3.2 Security of System & Content`= color_tile(customGreen, customGreen0),
-  `Score`= color_tile(customRed, customGreen)
-))
+lr = c(  # LEGAL Responsibility
+  "R3.1 Manage IP of Data Producers",
+  # legal agreement much can be done
+  "R3.2 Security of System",
+  # does the system have vulnerabilities
+  "R3.3 Security of Content" # how is content ensured its not reshared ?
+  )
+r_score$`Legal Responsibility`[1:3] = lr
+r_score[is.na(r_score)] = ""   
+kable(r_score, caption = "Modes of responsiblity and sub classifcations metrics") %>% kable_material_dark() %>%
+  kable_styling(latex_options = "HOLD_position")
 
 ```
 
-
-Albiet, TRUST is not a new concept and a number of trustworthiness certification mechanisms already exist; The Open Archival Information System (OAIS) provides a recommendation model to provide long-term preservation and access to digital information[REF]. The FAIR principles emphasize a best practice of machine and human re-usability with data objects.  
-
-<!-- when defining key qualities of data objects that are  -->
-
-<!--  believe thr prinicples are the -->
-
-<!-- digital repository trustworthiness.  -->
-
-<!-- The biological entity scietifically known  -->
-<!-- Among the vast digital sea of data reposotories the usual authorities who steer the direction of power and resources are present, Governments and Universities were among the first to adopt OS principles in practice, daily updates of cases testing, vaccine progress, epistomeoglocial roots interali    -->
-
-<!-- it takes a great deal of work to sucessfully collect, store and manage data  -->
-<!-- and among the hundreds of thousands of reposotoires which have come online since the pandemic -->
-
-<!-- in cyberspace and are owned and mangaged by an array of Governments, Universities, Businesses and publics.  -->
+## Metadata Responsibility
+Metadata Responsibility is the largest group of sub-classifications and focuses on the quality, re-usability and interoperability of data stored on the repository. `R1.1 Sufficient Metadata` asserts repository metadata to conform to a general curation standard whereby data can be transformed for further discoverability. `R1.2 Technical Documentation` requires a closed reading of each repository 'docs', and evaluates whether the documents provide clear and useful instructions to successfully interact and use the platform. `R1.3 Format Control` concerns a format control test to ensure that users uploading data have to do so in a standardized form. `R1.4 Content Control` asks if user content goes under a form of peer review to ensure integrity of data producers. `R1.5 Authenticated Provinence` checks if there are forms of authentication to interact with the data respiratory. 
 
 
-<!-- Data repostiores have been buuilt by Governments, univieristies, busisinerses and publics -->
-<!-- The greatest example of this has been the sharing of SARS genomic data, where millions of genomes have been shared across the world  -->
-<!-- During the Pandemic an open letter was written by the EBI in support in complete openness in genome sharing and asked for people to donate all data to a traid of databases -->
-<!-- Many public figures and institutions supported the letter saying that coivd was bigger than all of us, and we must come together -->
-<!-- Others critiseied the letter and argued that there database was a wolf in open source clothing and missed the point in resonsibility for data sharing -->
+## Service Responsibility
+Service Responsibility is the smallest group of sub-classifications and focuses on the tools presented to download and upload data. `R2.1 Reliable Data Services` tests the range of tools available to download data from the platform and tests if data can be downloaded in a range of formats and is machine readable. 
+
+
+## Legal Responsibility
+Legal Responsibility is a critical component to the R in trust as it binds the digital and physical world. `R3.1 Manage IP of Data Producers` verifies the intellectual property policy for data producers and the effects this has for  users of the platform. `R3.2 Security of System` studies the vulnerabilities in infrastructure which uphold the data, the platform and the various microservices which contribute to the functioning of the whole system. `R3.3 Security of Content` 
+
+# Results
+
+```{r fig3, fig.cap = "Table of Results", echo=FALSE, message=FALSE, warning=FALSE}
+
+r_score1 = data.frame(matrix(ncol = 3, nrow = 10))
+
+r_score_rn = c("Metric", "GISAID: EpiCov", "EBI: Covid-19 Data Platform")
+colnames(r_score1) = r_score_rn
+
+metric_col = c(
+  # DATA Responsibility
+  "R1.1 Sufficent Metadata",
+  # metadata which documents the progress of data in the repo to date
+  "R1.2 Techincal Documentation",
+  # documentation online on how to use data services
+  "R1.3 Format Control",
+  # uploading data
+  "R1.4 Content Control",
+  # peer review
+  "R1.5 Authenticated Provinence",
+  # log in
+  # SERVICES Responsibility
+  "R2.1 Reliable Data Services",
+  # a range of data tools which permit the download of data in various formats
+  # LEGAL Responsibility
+  "R3.1 Manage IP of Data Producers",
+  # legal agreement much can be done
+  "R3.2 Security of System",
+  # does the system have vulnerabilities
+  "R3.3 Security of Content" ,
+  # how is content ensured its not reshared ?
+  "Total Score"
+  
+)
+r_score1$Metric = metric_col
+
+r_score1$`EBI: Covid-19 Data Platform`[1] = 0.9
+r_score1$`EBI: Covid-19 Data Platform`[2] = 0.9
+r_score1$`EBI: Covid-19 Data Platform`[3] = 0.9
+r_score1$`EBI: Covid-19 Data Platform`[4] = 0.9
+r_score1$`EBI: Covid-19 Data Platform`[5] = 0
+r_score1$`EBI: Covid-19 Data Platform`[6] = 0.4
+r_score1$`EBI: Covid-19 Data Platform`[7] = 0
+r_score1$`EBI: Covid-19 Data Platform`[8] = 0.4
+r_score1$`EBI: Covid-19 Data Platform`[9] = 0
+r_score1$`EBI: Covid-19 Data Platform`[10] = sum(r_score1$`EBI: Covid-19 Data Platform`[1:9])
+
+r_score1$`GISAID: EpiCov`[1] = 0.4
+r_score1$`GISAID: EpiCov`[2] = 0.4
+r_score1$`GISAID: EpiCov`[3] = 0.9
+r_score1$`GISAID: EpiCov`[4] = 0.9
+r_score1$`GISAID: EpiCov`[5] = 0.9
+r_score1$`GISAID: EpiCov`[6] = 0.9
+r_score1$`GISAID: EpiCov`[7] = 0.4
+r_score1$`GISAID: EpiCov`[8] = 0.4
+r_score1$`GISAID: EpiCov`[9] = 0.9
+r_score1$`GISAID: EpiCov`[10] = sum(r_score1$`GISAID: EpiCov`[1:9])
+
+
+kable(r_score1, caption = "Results", format = "latex")  %>% kable_material_dark() %>%
+  kable_styling(latex_options = "HOLD_position")
 
 
 
+```
 
-<!-- TRUSt is a set of principles for data repositiores owners to adhere to so the community is served and they demonstate the ability to mananage the data they hold -->
-<!-- T = transparancey U = User focus, S = Sustainablity, T = Trust -->
-<!-- R = Adhering to the designated community’s metadata and curation standards, along with providing stewardship of the data holdings e.g. technical validation, documentation, quality control, authenticity protection, and long-term persistence. -->
+# Discussion
 
-<!-- Providing data services e.g. portal and machine interfaces, data download or server-side processing. -->
+<!-- This paper has presented a novel but highly subject approach  -->
+<!-- The RR metric is a novel approach to quantitatively study the responsibility of a data repository, however is   -->
 
-<!-- Managing the intellectual property rights of data producers, the protection of sensitive information resources, and the security of the system and its content. -->
+<!--  to truly reflect a robust description of repository responsibility. A multitude of factors were not considered in this analysis, such as  -->
+<!-- how practitioners of openness interpret what counts as responsible openness or how community users interact and use each platform. Further work refining the binary metric system may serve as a robust piece of empirical contribution in understanding the general question of responsibility in respotistiores, however only when coupled with qualitative differences.  -->
 
-<!-- The FAIR Data Principles3 highlight the need to embrace good practice by defining essential characteristics of data objects to ensure that data are reusable by humans and machines  -->
-<!-- The Open Archival Information System (OAIS) reference model4 provides recommendations on setting up archives delivering long-term preservation of and access to information (in particular, digital information) and creating preservation packages. -->
-<!-- None of these encapsulate trust and tremporal demand that trust takes to build and serve a community -->
-<!-- [trust table ] -->
 
-<!-- To start I document my expereince joining each community and qualiotaitely narrate me expereince conceptaulising the R principles in each repo -->
-<!-- I then systhensis the datasets into aggreated months and explore statistical trends in each dataset -->
-<!-- I conclusde by a final discourse on how  -->
+<!-- (4) suggest that this should be added as a crucial additional factor for R, BUT also that this cannot be easily transformed into a binary metric (1-0) -- we are looking at  -->
 
-# Methods
+<!-- (5) discuss how this works out in case og GISAID vs COVID-19 portal: here we have a clash of ideologies and experiences of what constitutes "good" openness -->
+
+<!-- # Conclusion -->
+
+<!-- (6) conclusion: there is much that CAN be done to metricise and evaluate TRUST principles as a key complement to FAIR, however even such evaluation needs to highlight the unavoidable qualitative/interpretative differences in the implementation of openness -->
+
+# References
 
 ```{r fig2, fig.cap = "Monthly totals of global SARS-CoV-2 cases sequenced and shared\n on the GISAID and Covid-19 Data Platform database until Febuary 22 2022", echo=FALSE, message=FALSE, warning=FALSE}
 source("../code/set-up.r")
@@ -164,6 +199,10 @@ ggplot(data=temporal_sub_all) +
 
 
 ```
+
+
+
+
 
 
 
