@@ -26,6 +26,15 @@ temporal_sub_all = readRDS("data/temporal_sub_all.rds")
 cd19_agg_data = readRDS("data/cd19_agg_data.RDS")
 gisaid = readRDS("data/gisaid.RDS")
 
+cd19_agg_data$GISAID.monthly.submissions = ""
+cd19_agg_data$GISAID.total.Submissions = ""
+gisaid$CD19DP.monthly.submissions = ""
+gisaid$CD19DP.total.submissions = ""
+df_main = rbind(gisaid,cd19_agg_data)
+
+present = main_df %>% dplyr::filter(Date == "2022/02")
+
+
 
 #################################################################
 ##                        Run Dashboard                        ##
