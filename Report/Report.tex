@@ -102,6 +102,8 @@ between interpetations of openesss, we link these discussions to .
     Data Governance
   }
 
+\newpage
+
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
@@ -143,20 +145,19 @@ and nation states, GISAID launched the EpiCov database which stores,
 analyses and builds evolutionary trees of SARS COV-2 genome sequences.
 The platform is currently hosted by the German Institute of Agriculture
 and the Max Planck institute and continues to be the leading open access
-database, with over 9 million genomes being sequenced.
+database, with over 9 million genomes sequenced.
 
 Although the letter did not mention GISAID exclusively, this series of
 events brings together a clash in ideologies on what constitutes as
 responsible openness during a crisis. Leonelli (2021) introduces this
 case study as a clash in ``responsible research measures,'' pointing out
 how ``trustworthy and explicitly non-exploitative conditions for data
-sharing helps to widen participation in data sharing,'' in this same
-line of thought we stipulate that Trust and Responsibility, or a lack of
-it, plays a central role in the success of OS platforms; hence
-researchers and data producers alike, must ensure quality and integrity
-of data when practicing OS principles in order to demonstrate the
-quality and discipline which OS research demands (Azeroual and Schöpfel
-2021).
+sharing helps to widen participation in data sharing.'' Under the same
+logic we stipulate that trust and responsiblitlity, or a lack of it,
+plays a central role in the success of OS platforms; hence researchers
+and data producers alike, must ensure quality and integrity of data when
+practicing OS principles in order to demonstrate the quality and
+discipline which OS research demands (Azeroual and Schöpfel 2021).
 
 The TRUST (Transparency, Responsibility, User Focus, Sustainability, and
 Technology) principles put forth a set of guidelines to demonstrate the
@@ -173,14 +174,8 @@ understanding of the temporal aspects of a data repository, data may
 enter a system under a FAIR or OAIS system, however TRUST should not be
 understood as a single check box, rather it must regularly audited to
 ensure the system ensures trust for the long run {[}Lin et al. (2020).
-Repository users should have confidence that data depositors are
-prompted to provide all metadata compliant with the community norms, as
-this greatly enhances the discoverability and usefulness of the data.
-Knowing that a repository verifies the integrity of available data and
-metadata assures potential users that the data holdings are more likely
-to be interoperable with other relevant datasets. Both depositors and
-users must have confidence that the data will remain accessible over
-time, and thus can be cited and referenced in scholarly publications.
+
+\newpage
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -233,7 +228,7 @@ platform. \texttt{R1.3\ Format\ Control} concerns a format control test
 to ensure that users uploading data have to do so in a standardized
 form. \texttt{R1.4\ Content\ Control} asks if user content goes under a
 form of peer review to ensure integrity of data producers.
-\texttt{R1.5\ Authenticated\ Provinence} checks if there are forms of
+\texttt{R1.5\ \ Authenticated\ Provenance} checks if there are forms of
 authentication in order to interact with the data repository.
 
 \hypertarget{service-responsibility}{%
@@ -276,10 +271,12 @@ R1.3 Format Control &  & R3.3 Security of Content\\
 \hline
 R1.4 Content Control &  & \\
 \hline
-R1.5 Authenticated Provinence &  & \\
+R1.5  Authenticated Provenance &  & \\
 \hline
 \end{tabular}
 \end{table}
+
+\newpage
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -355,9 +352,9 @@ implementation score.
 
 Peer review is currently unknown.
 
-\hypertarget{r1.5-authenticated-provinence}{%
+\hypertarget{r1.5-authenticated-provenance}{%
 \paragraph{R1.5 Authenticated
-Provinence}\label{r1.5-authenticated-provinence}}
+Provenance}\label{r1.5-authenticated-provenance}}
 
 One clear distinction between the two platforms is the requirement for
 data producers and users to register in order to access the GISAID
@@ -432,8 +429,6 @@ vulnerabilities in the system, this can be accessed on request.
 
 Currently unknown.
 
-\newpage
-
 \hypertarget{covid-19-data-portal}{%
 \subsection{Covid-19 Data Portal}\label{covid-19-data-portal}}
 
@@ -473,15 +468,44 @@ general usefulness of such simple and highly aggregated metadata.
 \paragraph{R1.3 Technical
 Documentation}\label{r1.3-technical-documentation}}
 
+Similar to GISAID, C19DP only provides documentation in English, however
+the technical docs provide a familiar format for open access software
+design. Within the C19DP there exists sufficient technical documentation
+for their proxy API and the bulk download tool, as well as examples on
+how to formulate queries and make curl requests for each of the tools.
+For data producers, C19DP links out to the ENA's SARS CoV-2 technical
+documentation which provides a clear documentation for the three
+submission options, GUI, CLI or submitting XML programtically via curl.
+The layout of the various documentations is best suited for those
+familiar with programming documentation.
+
+. Both documentation pages can be found on the platform and each clearly
+
 \hypertarget{r1.3-format-control-1}{%
 \paragraph{R1.3 Format Control}\label{r1.3-format-control-1}}
+
+C19DP provide format control documentation as well as automated checks
+for each submission option to ensure format consistency.
 
 \hypertarget{r1.4-content-control-1}{%
 \paragraph{R1.4 Content Control}\label{r1.4-content-control-1}}
 
-\hypertarget{r1.5-authenticated-provinence-1}{%
+This is currently unknown.
+
+\hypertarget{r1.5-authenticated-provenance-1}{%
 \paragraph{R1.5 Authenticated
-Provinence}\label{r1.5-authenticated-provinence-1}}
+Provenance}\label{r1.5-authenticated-provenance-1}}
+
+Simply put, C19DP does not have any form of authenticated proviannce.
+This is however by design, the philosophy of the database is for rapid
+and immediate access to data and would consider log-in functioanlity as
+a barrier to data sharing. This design feaute highly benefits users of
+the platform as their is no lag time between finding and accessing the
+data. For data producers this lack of authentication is blurry, data
+producers still have to register a sample or a study with the ENA and
+EBI, which in practice is a form of authentication, by not signing up to
+C19DP means data producers only have to register to two institutions
+rather than three.
 
 \hypertarget{service-responsibility-2}{%
 \subsubsection{Service Responsibility}\label{service-responsibility-2}}
@@ -506,8 +530,9 @@ have a stable internet connection and not exiting the page. This
 `feature' is at best tokenistic as it gives the impression that users
 without a programming education may have the same data access than
 someone who does, nonetheless this is a normal feature on open access
-databases where the target audience is not explicitly programmers. For
-those with a programming education, C19DP provide an API and a bulk
+databases where the target audience is not explicitly programmers.
+
+For those with a programming education, C19DP provide an API and a bulk
 downloader CLI to speed up the process of downloading files, both tools
 operate under a shared infrastructure, being the EBI search API, however
 the two tools are packaged differently. C19DP API acts as a proxy for
@@ -522,11 +547,11 @@ efficient way to download large volumes of data, despite a supposedly
 scary CLI, the tool allows users to download bulk batches of sequences
 or metadata in parallel. The tool allows users to form queries in the
 CLI, given you have the space on your computer users can retrieve tens
-of giggabytes of sequence data in more formats than GISAID, this being
+of gigabytes of sequence data in more formats than GISAID, this being
 said, when attempting to use this tool to download the entire collection
 of metadata the tool broke. These issues have been raised with the
-support team at the EBI yet remained a crucial failure in respoitory
-responsibslity, with all three tools failing to download the entire
+support team at the EBI yet remained a crucial failure in repository
+responsibility, with all three tools failing to download the entire
 metadata it became increasingly difficult to carry out inspections of
 responsibility classification. Although a solution to access a snapshot
 of the latest database was offered by the EBI support team, this
@@ -540,11 +565,23 @@ instead suggested to directly use the European Nucleotide Archive.
 \paragraph{R3.1 Manage IP of Data
 Producers}\label{r3.1-manage-ip-of-data-producers-1}}
 
+It would be fair to say that C19DP is against any form of IP management
+with regards to genomic surveleince of the SARS-CoV 2 Virus. C19DP
+declare in the open letter only they are in the optimal position to
+`achieve' the difficult task of linking Covid-19 related datasets and by
+giving your faith in their resource they promise it will bring vast
+benefits to societey.
+
 \hypertarget{r3.2-security-of-system-1}{%
 \paragraph{R3.2 Security of System}\label{r3.2-security-of-system-1}}
 
+Currently unkown.
+
 \hypertarget{r3.3-security-of-content-1}{%
 \paragraph{R3.3 Security of Content}\label{r3.3-security-of-content-1}}
+
+Due to the laissez faire IP managment, content on the C19DP is up for
+grabs,
 
 \begin{table}[H]
 
@@ -562,7 +599,7 @@ R1.3 Format Control & 0.9 & 0.9\\
 \hline
 R1.4 Content Control & 0.9 & 0.9\\
 \hline
-R1.5 Authenticated Provinence & 0.9 & 0.0\\
+R1.5  Authenticated Provenance & 0.9 & 0.0\\
 \hline
 R2.1 Reliable Data Services & 0.9 & 0.4\\
 \hline
@@ -580,8 +617,60 @@ Total Score & 6.1 & 4.4\\
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
+This paper has presented a novel but highly subject approach The RR
+metric is a novel approach to quantitatively study the responsibility of
+a data repository, however is
+
+to truly reflect a robust description of repository responsibility. A
+multitude of factors were not considered in this analysis, such as how
+practitioners of openness interpret what counts as responsible openness
+or how community users interact and use each platform. Further work
+refining the binary metric system may serve as a robust piece of
+empirical contribution in understanding the general question of
+responsibility in respotistiores, however only when coupled with
+qualitative differences.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{3}
+\item
+  suggest that this should be added as a crucial additional factor for
+  R, BUT also that this cannot be easily transformed into a binary
+  metric (1-0) -- we are looking at
+\item
+  discuss how this works out in case og GISAID vs COVID-19 portal: here
+  we have a clash of ideologies and experiences of what constitutes
+  ``good'' openness
+\end{enumerate}
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  conclusion: there is much that CAN be done to metricise and evaluate
+  TRUST principles as a key complement to FAIR, however even such
+  evaluation needs to highlight the unavoidable
+  qualitative/interpretative differences in the implementation of
+  openness
+\end{enumerate}
+
+\hypertarget{appendix}{%
+\section{Appendix}\label{appendix}}
+
+\begin{figure}
+\centering
+\includegraphics{Report_files/figure-latex/fig2-1.pdf}
+\caption{Monthly totals of global SARS-CoV-2 cases sequenced and shared
+on the GISAID and Covid-19 Data Platform database until Febuary 22 2022}
+\end{figure}
+
 \hypertarget{references}{%
-\section{References}\label{references}}
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}

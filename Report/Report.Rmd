@@ -22,17 +22,19 @@ output: rticles::arxiv_article
 always_allow_html: true
 
 ---
-
+\newpage
 # Introduction
 
 The pandemic collapsed normative scientific practices and demanded rapid, scalable and open access to the latest research findings, treatments and protocols on the coronavirus. This shift in research practice - in conjunction with decreasing costs in data storage - has led to an exponential increase in data repositories becoming publicly accessible online, as well as a global recognition of Open Science (OS) principles by the United Nations [REF]. Simultaneously, a wider discourse emerged among policy circles and researchers with concern to the responsibility of repositories reporting on COVID-19 and related topics, most evidently in relation to the prompt dissemination of genetic sequencing data from various strains of the SARS COV-2 virus [See inter alia @Meredith2020;@Romano2021;@Brito2021;@Kalia2021;@Harrison2021;@Romano2021]. 
 
-On the 29th of January 2021 the governing board of the European Bioinformatics Institute (EBI) posted a public letter in Nature calling for a greater "openness" in sharing SARS-CoV-2 genome data, the letter argued "to unleash the fast flow of research advances" the scientific community must remove all formal barriers which restrict data sharing and share all SARS-CoV-2 genome sequences to one of a triad of state genomic surveillance programs (EBI, The GenBank of USA and the DNA Data Bank of Japan). The letter was exclusively signed and promoted by Nobel Laureates, Directors of Bioinformatic programs and many researchers at the cutting edge of genome sequencing. At the same time, the Global Initiative on Sharing Avian Influenza Data (GISAID) had just overtaken the EBI's European COVID-19 Data Portal (C19DP) in the volume of genome sequences being shared to open access databases (See appendix Figure 1). GISAID was launched in 2008 to monitor global influenza outbreaks and from the offset positioned itself as an alternative to the public domain sharing model (creative commons), instead GISAID formulated a policy which required users to authenticate their academic identity and agree not to republish the sites genomes without permission from the data producer. At the beginning of 2020, after receiving a number of philanthropic donations from the World Health Organization, big-pharma and nation states, GISAID launched the EpiCov database which stores, analyses and builds evolutionary trees of SARS COV-2 genome sequences. The platform is currently hosted by the German Institute of Agriculture and the Max Planck institute and continues to be the leading open access database, with over 9 million genomes being sequenced. 
+On the 29th of January 2021 the governing board of the European Bioinformatics Institute (EBI) posted a public letter in Nature calling for a greater "openness" in sharing SARS-CoV-2 genome data, the letter argued "to unleash the fast flow of research advances" the scientific community must remove all formal barriers which restrict data sharing and share all SARS-CoV-2 genome sequences to one of a triad of state genomic surveillance programs (EBI, The GenBank of USA and the DNA Data Bank of Japan). The letter was exclusively signed and promoted by Nobel Laureates, Directors of Bioinformatic programs and many researchers at the cutting edge of genome sequencing. At the same time, the Global Initiative on Sharing Avian Influenza Data (GISAID) had just overtaken the EBI's European COVID-19 Data Portal (C19DP) in the volume of genome sequences being shared to open access databases (See appendix Figure 1). GISAID was launched in 2008 to monitor global influenza outbreaks and from the offset positioned itself as an alternative to the public domain sharing model (creative commons), instead GISAID formulated a policy which required users to authenticate their academic identity and agree not to republish the sites genomes without permission from the data producer. At the beginning of 2020, after receiving a number of philanthropic donations from the World Health Organization, big-pharma and nation states, GISAID launched the EpiCov database which stores, analyses and builds evolutionary trees of SARS COV-2 genome sequences. The platform is currently hosted by the German Institute of Agriculture and the Max Planck institute and continues to be the leading open access database, with over 9 million genomes sequenced. 
 
-Although the letter did not mention GISAID exclusively, this series of events brings together a clash in ideologies on what constitutes as responsible openness during a crisis. @pittphilsci19817 introduces this case study as a clash in "responsible research measures", pointing out how "trustworthy and explicitly non-exploitative conditions for data sharing helps to widen participation in data sharing", in this same line of thought we stipulate that Trust and Responsibility, or a lack of it, plays a central role in the success of OS platforms; hence researchers and data producers alike, must ensure quality and integrity of data when practicing OS principles in order to demonstrate the quality and discipline which OS research demands [@AZEROUAL2021169]. 
+Although the letter did not mention GISAID exclusively, this series of events brings together a clash in ideologies on what constitutes as responsible openness during a crisis. @pittphilsci19817 introduces this case study as a clash in "responsible research measures", pointing out how "trustworthy and explicitly non-exploitative conditions for data sharing helps to widen participation in data sharing". Under the same logic we stipulate that trust and responsiblitlity, or a lack of it, plays a central role in the success of OS platforms; hence researchers and data producers alike, must ensure quality and integrity of data when practicing OS principles in order to demonstrate the quality and discipline which OS research demands [@AZEROUAL2021169]. 
 
-The TRUST (Transparency, Responsibility, User Focus, Sustainability, and Technology) principles put forth a set of guidelines to  demonstrate the trustworthiness of a digital repository to many of the stakeholders involved, including researchers, community users, funders, developers and service providers. In an OS context, a number of trustworthiness certification mechanisms already exist; The Open Archival Information System (OAIS) provides a recommendation model to provide long-term preservation and access to digital information [@lavoie2004open] and the FAIR principles emphasize a best practice of machine and human re-usability with data objects. However, Lin et al (2020) argue these frameworks are not suitable for a broader audience and lack a critical understanding of the temporal aspects of a data repository, data may enter a system under a FAIR or OAIS system, however TRUST should not be understood as a single check box, rather it must regularly audited to ensure the system ensures trust for the long run [@Lin2020. Repository users should have confidence that data depositors are prompted to provide all metadata compliant with the community norms, as this greatly enhances the discoverability and usefulness of the data. Knowing that a repository verifies the integrity of available data and metadata assures potential users that the data holdings are more likely to be interoperable with other relevant datasets. Both depositors and users must have confidence that the data will remain accessible over time, and thus can be cited and referenced in scholarly publications. 
+The TRUST (Transparency, Responsibility, User Focus, Sustainability, and Technology) principles put forth a set of guidelines to  demonstrate the trustworthiness of a digital repository to many of the stakeholders involved, including researchers, community users, funders, developers and service providers. In an OS context, a number of trustworthiness certification mechanisms already exist; The Open Archival Information System (OAIS) provides a recommendation model to provide long-term preservation and access to digital information [@lavoie2004open] and the FAIR principles emphasize a best practice of machine and human re-usability with data objects. However, Lin et al (2020) argue these frameworks are not suitable for a broader audience and lack a critical understanding of the temporal aspects of a data repository, data may enter a system under a FAIR or OAIS system, however TRUST should not be understood as a single check box, rather it must regularly audited to ensure the system ensures trust for the long run [@Lin2020. 
+<!-- Repository users should have confidence that data depositors are prompted to provide all metadata compliant with the community norms, as this greatly enhances the discoverability and usefulness of the data. Knowing that a repository verifies the integrity of available data and metadata assures potential users that the data holdings are more likely to be interoperable with other relevant datasets. Both depositors and users must have confidence that the data will remain accessible over time, and thus can be cited and referenced in scholarly publications.  -->
 
+\newpage
 # Methods
 
 ## Definition
@@ -47,7 +49,7 @@ Stakeholders of a repository must take responsibility - legally and ethically- f
 We classify our reading of responsibility into three distinct modes which are described by sub classifications metrics. Each metric varies on a scale from 0-1, where 0 indicates the responsibility classification is "not implemented", 0.4 indicates the responsibility classification is "partially implemented" and 0.9 indicates the responsibility classification is "Sufficiently implemented". The total score for each distinct mode is calculated as a mean weighted average from each of its sub classifications. A summary table can be found in table 1.
  
 ## Data Responsibility
-Data Responsibility is the largest group of sub-classifications and focuses on the quality, re-usability and interoperability of data stored on the repository. `R1.1 Sufficient Metadata` asserts repository metadata conform to a general curation standard whereby data can be transformed for further discoverability and provides sufficent overviews of the data entering the platform. `R1.2 Technical Documentation` requires a closed reading of each repository 'docs', and evaluates whether the documents provide clear and useful instructions to successfully interact and use the platform. `R1.3 Format Control` concerns a format control test to ensure that users uploading data have to do so in a standardized form. `R1.4 Content Control` asks if user content goes under a form of peer review to ensure integrity of data producers. `R1.5 Authenticated Provinence` checks if there are forms of authentication in order to interact with the data repository. 
+Data Responsibility is the largest group of sub-classifications and focuses on the quality, re-usability and interoperability of data stored on the repository. `R1.1 Sufficient Metadata` asserts repository metadata conform to a general curation standard whereby data can be transformed for further discoverability and provides sufficent overviews of the data entering the platform. `R1.2 Technical Documentation` requires a closed reading of each repository 'docs', and evaluates whether the documents provide clear and useful instructions to successfully interact and use the platform. `R1.3 Format Control` concerns a format control test to ensure that users uploading data have to do so in a standardized form. `R1.4 Content Control` asks if user content goes under a form of peer review to ensure integrity of data producers. `R1.5  Authenticated Provenance` checks if there are forms of authentication in order to interact with the data repository. 
 
 ## Service Responsibility
 Service Responsibility is the smallest group of sub-classifications and focuses on the tools presented to download and upload data. `R2.1 Reliable Data Services` tests the performance of tools made available to download data and further  if data can be downloaded in a range of formats and is machine readable. 
@@ -74,7 +76,7 @@ mr = c(  "R1.1 Curated Metadata",
          # uploading data
          "R1.4 Content Control",
          # peer review
-         "R1.5 Authenticated Provinence")
+         "R1.5  Authenticated Provenance")
 r_score$`Data Responsibility` = mr
 
 sr = c("R2.1 Reliable Data Services")
@@ -94,6 +96,7 @@ kable(r_score, caption = "Modes of responsiblity and sub classifcations metrics"
 
 ```
 
+\newpage
 # Results
 
 This sections outlines the justifications for each sub classification score per case study, the full results are summarised in table 2. 
@@ -118,7 +121,7 @@ GISAID clearly documents a format control for data producers to follow in order 
 
 Peer review is currently unknown.
 
-#### R1.5 Authenticated Provinence
+#### R1.5  Authenticated Provenance
 
 One clear distinction between the two platforms is the requirement for data producers and users to register in order to access the GISAID database. 
 GISAID requires users to confirm their identity and comply with GISAID's policy to not republish data without permission from the data producer and is the clearest distrinction between the two platforms openess philopsohies. Authentication to the GISAID platform takes between a few hours to several days and consists of seven "Personal Data" questions (*Title, Salutation, First Name, Middle Name, Last Name, Title, Desired Login*) and eleven "Contact information" questions (*Institution, Department, Street, Postal Code, City, Location, State/province, Telephone, Fax, Mobile, Email*). This simple, known and effective process determines a sufficent implementation score.   
@@ -144,7 +147,6 @@ GISAID uses a session based authentication, in contrast to token authentication 
 
 Currently unknown.
 
-\newpage
 ## Covid-19 Data Portal
 
 The Covid-19 Data Portal scores considerably worse than GISAID, yet this should be understood as a difference in understanding of openess, not a metric evaluation of right and wrong. The Covid-19 Data Portal does provide numerous sufficient impleneteations for their genome repository and in some cases permits for a more computationally advanced experience when compared to GISAID. 
@@ -157,13 +159,21 @@ The Covid-19 Data Portal sufficiently implements a form of stanrdisesd metadata 
 
 #### R1.3 Technical Documentation
 
+Similar to GISAID, C19DP only provides documentation in English, however the technical docs provide a familiar format for open access software design. Within the C19DP there exists sufficient technical documentation for their proxy API and the bulk download tool, as well as examples on how to formulate queries and make curl requests for each of the tools. For data producers, C19DP links out to the ENA's SARS CoV-2 technical documentation which provides a clear documentation for the three submission options, GUI, CLI or submitting XML programtically via curl. The layout of the various documentations is best suited for those familiar with programming documentation. 
+
+. Both documentation pages can be found on the platform and each clearly 
+
 #### R1.3 Format Control
 
-
+C19DP provide format control documentation as well as automated checks for each submission option to ensure format consistency.
 
 #### R1.4 Content Control
 
-#### R1.5 Authenticated Provinence
+This is currently unknown.
+
+#### R1.5  Authenticated Provenance
+
+Simply put, C19DP does not have any form of authenticated proviannce. This is however by design, the philosophy of the database is for rapid and immediate access to data and would consider log-in functioanlity as a barrier to data sharing. This design feaute highly benefits users of the platform as their is no lag time between finding and accessing the data. For data producers this lack of authentication is blurry, data producers still have to register a sample or a study with the ENA and EBI, which in practice is a form of authentication, by not signing up to C19DP means data producers only have to register to two institutions rather than three.
 
 ### Service Responsibility
 
@@ -171,15 +181,21 @@ The Covid-19 Data Portal sufficiently implements a form of stanrdisesd metadata 
 
 C19DP provide a REST API, GUI interface and a java bulk downloader CLI tool, this extensive collection of tooling permits users of all abilities to choose a method which they are most comfortable with, however this ease of use also determines the speed and volume in which a user can access data. For example, the GUI interface has a `download` button where it gives the option to download a previosuly defined query or the entire database of genome sequences - in EMBL or FASTA format - or genome sequence metadata - in TSV or as ID's to use with the bulk downloader, while the former works quickly the entrire download option is rather awful, to download the full archive of 4.8 million sequences would take anything from several hours to , with the aid of a super computer or many days while persistently having to have a stable internet connection and not exiting the page. This 'feature' is at best tokenistic as it gives the impression that users without a programming education may have the same data access than someone who does, nonetheless this is a normal feature on open access databases where the target audience is not explicitly programmers. 
 
-For those with a programming education, C19DP provide an API and a bulk downloader CLI to speed up the process of downloading files, both tools operate under a shared infrastructure, being the EBI search API, however the two tools are packaged differently. C19DP API acts as a proxy for the central European Nucleotide Archive, thereby allowing users to efficiently query the database under a structure which fits the Covid-19 Data Portal branding. Likewise with the GUI, the API is still slow to work with, due to the complex environment of the EBI central database the REST API architecture has to circumnavigate many end points that ultimately leads to slower download speeds and a less enjoyable developer experience. The bulk downloader is certainly the most efficient way to download large volumes of data, despite a supposedly scary CLI, the tool allows users to download bulk batches of sequences or metadata in parallel. The tool allows users to form queries in the CLI, given you have the space on your computer users can retrieve tens of giggabytes of sequence data in more formats than GISAID, this being said, when attempting to use this tool to download the entire collection of metadata the tool broke. These issues have been raised with the support team at the EBI yet remained a crucial failure in respoitory responsibslity, with all three tools failing to download the entire metadata it became increasingly difficult to carry out inspections of responsibility classification. Although a solution to access a snapshot of the latest database was offered by the EBI support team, this solution was did not use any of the suggested C19DP data services and instead suggested to directly use the European Nucleotide Archive.
+For those with a programming education, C19DP provide an API and a bulk downloader CLI to speed up the process of downloading files, both tools operate under a shared infrastructure, being the EBI search API, however the two tools are packaged differently. C19DP API acts as a proxy for the central European Nucleotide Archive, thereby allowing users to efficiently query the database under a structure which fits the Covid-19 Data Portal branding. Likewise with the GUI, the API is still slow to work with, due to the complex environment of the EBI central database the REST API architecture has to circumnavigate many end points that ultimately leads to slower download speeds and a less enjoyable developer experience. The bulk downloader is certainly the most efficient way to download large volumes of data, despite a supposedly scary CLI, the tool allows users to download bulk batches of sequences or metadata in parallel. The tool allows users to form queries in the CLI, given you have the space on your computer users can retrieve tens of gigabytes of sequence data in more formats than GISAID, this being said, when attempting to use this tool to download the entire collection of metadata the tool broke. These issues have been raised with the support team at the EBI yet remained a crucial failure in repository responsibility, with all three tools failing to download the entire metadata it became increasingly difficult to carry out inspections of responsibility classification. Although a solution to access a snapshot of the latest database was offered by the EBI support team, this solution was did not use any of the suggested C19DP data services and instead suggested to directly use the European Nucleotide Archive.
 
 ### Legal Responsibility
 
 #### R3.1 Manage IP of Data Producers
 
+It would be fair to say that C19DP is against any form of IP management with regards to genomic surveleince of the SARS-CoV 2 Virus. C19DP declare in the open letter only they are in the optimal position to 'achieve' the difficult task of linking Covid-19 related datasets and by giving your faith in their resource they promise it will bring vast benefits to societey. 
+
 #### R3.2 Security of System
 
+Currently unkown.
+
 #### R3.3 Security of Content
+
+Due to the laissez faire IP managment, content on the C19DP is up for grabs,   
 
 
 ```{r fig3, fig.cap = "Table of Results", echo=FALSE, message=FALSE, warning=FALSE}
@@ -199,7 +215,7 @@ metric_col = c(
   # uploading data
   "R1.4 Content Control",
   # peer review
-  "R1.5 Authenticated Provinence",
+  "R1.5  Authenticated Provenance",
   # log in
   # SERVICES Responsibility
   "R2.1 Reliable Data Services",
@@ -247,43 +263,47 @@ kable(r_score1, caption = "Results", format = "latex")  %>% kable_material_dark(
 ```
 
 
-
 # Discussion
 
-<!-- This paper has presented a novel but highly subject approach  -->
-<!-- The RR metric is a novel approach to quantitatively study the responsibility of a data repository, however is   -->
+This paper has presented a novel but highly subject approach
+The RR metric is a novel approach to quantitatively study the responsibility of a data repository, however is
 
-<!--  to truly reflect a robust description of repository responsibility. A multitude of factors were not considered in this analysis, such as  -->
-<!-- how practitioners of openness interpret what counts as responsible openness or how community users interact and use each platform. Further work refining the binary metric system may serve as a robust piece of empirical contribution in understanding the general question of responsibility in respotistiores, however only when coupled with qualitative differences.  -->
+ to truly reflect a robust description of repository responsibility. A multitude of factors were not considered in this analysis, such as
+how practitioners of openness interpret what counts as responsible openness or how community users interact and use each platform. Further work refining the binary metric system may serve as a robust piece of empirical contribution in understanding the general question of responsibility in respotistiores, however only when coupled with qualitative differences.
 
 
-<!-- (4) suggest that this should be added as a crucial additional factor for R, BUT also that this cannot be easily transformed into a binary metric (1-0) -- we are looking at  -->
+(4) suggest that this should be added as a crucial additional factor for R, BUT also that this cannot be easily transformed into a binary metric (1-0) -- we are looking at
 
-<!-- (5) discuss how this works out in case og GISAID vs COVID-19 portal: here we have a clash of ideologies and experiences of what constitutes "good" openness -->
+(5) discuss how this works out in case og GISAID vs COVID-19 portal: here we have a clash of ideologies and experiences of what constitutes "good" openness
 
-<!-- # Conclusion -->
+# Conclusion
 
-<!-- (6) conclusion: there is much that CAN be done to metricise and evaluate TRUST principles as a key complement to FAIR, however even such evaluation needs to highlight the unavoidable qualitative/interpretative differences in the implementation of openness -->
+(6) conclusion: there is much that CAN be done to metricise and evaluate TRUST principles as a key complement to FAIR, however even such evaluation needs to highlight the unavoidable qualitative/interpretative differences in the implementation of openness
+
+
+# Appendix
+
+```{r fig2, fig.cap = "Monthly totals of global SARS-CoV-2 cases sequenced and shared\n on the GISAID and Covid-19 Data Platform database until Febuary 22 2022", echo=FALSE, message=FALSE, warning=FALSE}
+source("../code/set-up.r")
+main_df = readRDS("../data/main_df.rds")
+temporal_sub_all = readRDS("../data/temporal_sub_all.rds")
+ggplot(data=temporal_sub_all) +
+  geom_line(aes(x=Date,y=sum_gisaid, group=1, color='GISAID Monthly Total')) +
+  geom_line(aes(x=Date,y=sum_cd19dp, group=1, color ='CD19DP Monthly Total')) +
+  scale_colour_manual("",
+                      breaks = c("GISAID Monthly Total", "CD19DP Monthly Total"),
+                      values = c("green", "blue")) +
+  labs(x = "Date",
+       y = "Sequence Submissions",
+       title = "Monthly Total SARS-CoV-2 Sequence Submissions",
+       caption = "GISAID Metadata: https://www.epicov.org/\nCovid-19 Data Platform Metadata: https://www.ebi.ac.uk/ena/portal/api/ ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5),   legend.position = "bottom")
+
+
+```
+
 
 # References
 
-<!-- ```{r fig2, fig.cap = "Monthly totals of global SARS-CoV-2 cases sequenced and shared\n on the GISAID and Covid-19 Data Platform database until Febuary 22 2022", echo=FALSE, message=FALSE, warning=FALSE} -->
-<!-- source("../code/set-up.r") -->
-<!-- main_df = readRDS("../data/main_df.rds") -->
-<!-- temporal_sub_all = readRDS("../data/temporal_sub_all.rds") -->
-<!-- ggplot(data=temporal_sub_all) + -->
-<!--   geom_line(aes(x=Date,y=sum_gisaid, group=1, color='GISAID Monthly Total')) + -->
-<!--   geom_line(aes(x=Date,y=sum_cd19dp, group=1, color ='CD19DP Monthly Total')) + -->
-<!--   scale_colour_manual("", -->
-<!--                       breaks = c("GISAID Monthly Total", "CD19DP Monthly Total"), -->
-<!--                       values = c("green", "blue")) + -->
-<!--   labs(x = "Date", -->
-<!--        y = "Sequence Submissions", -->
-<!--        title = "Monthly Total SARS-CoV-2 Sequence Submissions", -->
-<!--        caption = "GISAID Metadata: https://www.epicov.org/\nCovid-19 Data Platform Metadata: https://www.ebi.ac.uk/ena/portal/api/ ") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5),   legend.position = "bottom") -->
-
-
-<!-- ``` -->
 
 
 
