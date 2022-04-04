@@ -11,11 +11,14 @@ authors:
     affiliation: Exeter University
     location: University of Exeter, St Germans Road, EX4 7HD Exeter, UK
     email: s.leonelli@exeter.ac.uk
-abstract: "Building on previous discussions on Epistemic diversity and Open Science, we demonstrate a novel metric system based on the description of Responsiblity from the TRUST data repositoiry principle (Lin et al 2020). We use two case studies from popular genomic survelience programs, GISAID and the Covid-19 Data Platform, to explore the naunces between interpetations of openesss, we link these discussions to ."
+abstract: "Building on previous discussions on epistemic diversity and Open Science, we provide a novel metric system designed to elicit information regarding the responsibility of a given repository, as well as documenting a clear workflow for repository maintainers to follow when conducting an examination of their . After defining the characteristics of what constitutes as a responsible respoitory, we then use two case studies from popular genomic survelience programs, GISAID and the Covid-19 Data Platform, to illustrate how different interpretations of responsible openess contribute to different implenetations of responsibility measures. We conclude with a summary of results and a discussion of methodological challenges and pathways for future work."
 keywords:
-  - SARS-CoV2
-  - Open Science
   - Data Governance
+  - Data Sharing
+  - Open Science
+  - Pluralism
+  - SARS-CoV2
+  - Science Policy
 bibliography: references.bib
 biblio-style: unsrt
 output: rticles::arxiv_article
@@ -25,14 +28,14 @@ always_allow_html: true
 \newpage
 # Introduction
 
-The pandemic collapsed normative scientific practices and demanded rapid, scalable and open access to the latest research findings, treatments and protocols on the coronavirus. This shift in research practice - in conjunction with decreasing costs in data storage - has led to an exponential increase in data repositories becoming publicly accessible online, as well as a global recognition of Open Science (OS) principles by the United Nations [REF]. Simultaneously, a wider discourse emerged among policy circles and researchers with concern to the responsibility of repositories reporting on COVID-19 and related topics, most evidently in relation to the prompt dissemination of genetic sequencing data from various strains of the SARS COV-2 virus [See inter alia @Meredith2020;@Romano2021;@Brito2021;@Kalia2021;@Harrison2021;@Romano2021]. 
+The pandemic disrupted normative scientific practices [ref] and demanded rapid, scalable and open access to the latest research findings, treatments and protocols on the coronavirus. This shift in research practice - in conjunction with decreasing costs in data storage - has led to an exponential increase in data repositories becoming publicly accessible online, as well as a global recognition of Open Science (OS) principles by the United Nations [REF]. Simultaneously, a wider discourse emerged among policy circles and researchers with concern to the responsibility of repositories reporting on COVID-19 and related topics, most evidently in relation to the prompt dissemination of genetic sequencing data from various strains of the SARS COV-2 virus [See inter alia @Meredith2020;@Romano2021;@Brito2021;@Kalia2021;@Harrison2021;@Romano2021]. 
 
 On the 29th of January 2021 the governing board of the European Bioinformatics Institute (EBI) posted a public letter in Nature calling for a greater "openness" in sharing SARS-CoV-2 genome data, the letter argued "to unleash the fast flow of research advances" the scientific community must remove all formal barriers which restrict data sharing and share all SARS-CoV-2 genome sequences to one of a triad of state genomic surveillance programs (EBI, The GenBank of USA and the DNA Data Bank of Japan). The letter was exclusively signed and promoted by Nobel Laureates, Directors of Bioinformatic programs and many researchers at the cutting edge of genome sequencing. At the same time, the Global Initiative on Sharing Avian Influenza Data (GISAID) had just overtaken the EBI's European COVID-19 Data Portal (C19DP) in the volume of genome sequences being shared to open access databases (See appendix Figure 1). GISAID was launched in 2008 to monitor global influenza outbreaks and from the offset positioned itself as an alternative to the public domain sharing model (creative commons), instead GISAID formulated a policy which required users to authenticate their academic identity and agree not to republish the sites genomes without permission from the data producer. At the beginning of 2020, after receiving a number of philanthropic donations from the World Health Organization, big-pharma and nation states, GISAID launched the EpiCov database which stores, analyses and builds evolutionary trees of SARS COV-2 genome sequences. The platform is currently hosted by the German Institute of Agriculture and the Max Planck institute and continues to be the leading open access database, with over 9 million genomes sequenced. 
 
-Although the letter did not mention GISAID exclusively, this series of events brings together a clash in ideologies on what constitutes as responsible openness during a crisis. @pittphilsci19817 introduces this case study as a clash in "responsible research measures", pointing out how "trustworthy and explicitly non-exploitative conditions for data sharing helps to widen participation in data sharing". Under the same logic we stipulate that trust and responsiblitlity, or a lack of it, plays a central role in the success of OS platforms; hence researchers and data producers alike, must ensure quality and integrity of data when practicing OS principles in order to demonstrate the quality and discipline which OS research demands [@AZEROUAL2021169]. 
-
-The TRUST (Transparency, Responsibility, User Focus, Sustainability, and Technology) principles put forth a set of guidelines to  demonstrate the trustworthiness of a digital repository to many of the stakeholders involved, including researchers, community users, funders, developers and service providers. In an OS context, a number of trustworthiness certification mechanisms already exist; The Open Archival Information System (OAIS) provides a recommendation model to provide long-term preservation and access to digital information [@lavoie2004open] and the FAIR principles emphasize a best practice of machine and human re-usability with data objects. However, Lin et al (2020) argue these frameworks are not suitable for a broader audience and lack a critical understanding of the temporal aspects of a data repository, data may enter a system under a FAIR or OAIS system, however TRUST should not be understood as a single check box, rather it must regularly audited to ensure the system ensures trust for the long run [@Lin2020. 
+Although the letter did not mention GISAID exclusively, this series of events brings together a clash in ideologies on what constitutes as responsible openness during a crisis. @pittphilsci19817 introduces this case study as a clash in "responsible research measures", pointing out how "trustworthy and explicitly non-exploitative conditions for data sharing helps to widen participation in data sharing". Under the same logic we stipulate that trust and responsiblitlity, or a lack of it, plays a central role in the success of OS platforms; hence researchers and data producers alike, must ensure quality and integrity of data when practicing OS principles in order to demonstrate the quality and discipline which OS research demands [@AZEROUAL2021169]. The TRUST (Transparency, Responsibility, User Focus, Sustainability, and Technology) principles put forth a set of guidelines to demonstrate the trustworthiness of a digital repository to many of the stakeholders involved, including researchers, community users, funders, developers and service providers. In an OS context, a number of trustworthiness certification mechanisms already exist; `The Open Archival Information System` (OAIS) provides a recommendation model to provide long-term preservation and access to digital information [@lavoie2004open], the `FAIR` principles emphasize a best practice of machine and human re-usability with data objects and `datasheets for datasets` lays out a set of questions that documents the motivation, composition, collection process, preprocessing process, distribution and maintenance of a given dataset [@Gebru2021]. Lin et al (2020) note many of these frameworks are not suitable for a broader audience and lack a critical understanding of the temporal aspects of a data repository, data may enter a system under a FAIR or OAIS system, however TRUST should not be understood as a single check box, rather it must regularly audited to ensure the system ensures trust for the long run [@Lin2020]. 
 <!-- Repository users should have confidence that data depositors are prompted to provide all metadata compliant with the community norms, as this greatly enhances the discoverability and usefulness of the data. Knowing that a repository verifies the integrity of available data and metadata assures potential users that the data holdings are more likely to be interoperable with other relevant datasets. Both depositors and users must have confidence that the data will remain accessible over time, and thus can be cited and referenced in scholarly publications.  -->
+
+Building on previous discussions on epistemic diversity and Open Science, we provide a novel metric system designed to elicit information regarding the responsibility of a given repository, as well as documenting a clear workflow for repository maintainers to follow when conducting this metric system. After defining the characteristics of what constitutes as a responsible respoitory, we then use two case studies from popular genomic survelience programs, GISAID and the Covid-19 Data Platform, to illustrate how different interpretations of responsible openess contribute to different implenetations of responsibility measures. We conclude with a summary of results and a discussion of methodological challenges and pathways for future work.
 
 \newpage
 # Methods
@@ -49,7 +52,7 @@ Stakeholders of a repository must take responsibility - legally and ethically- f
 We classify our reading of responsibility into three distinct modes which are described by sub classifications metrics. Each metric varies on a scale from 0-1, where 0 indicates the responsibility classification is "not implemented", 0.4 indicates the responsibility classification is "partially implemented" and 0.9 indicates the responsibility classification is "Sufficiently implemented". The total score for each distinct mode is calculated as a mean weighted average from each of its sub classifications. A summary table can be found in table 1.
  
 ## Data Responsibility
-Data Responsibility is the largest group of sub-classifications and focuses on the quality, re-usability and interoperability of data stored on the repository. `R1.1 Sufficient Metadata` asserts repository metadata conform to a general curation standard whereby data can be transformed for further discoverability and provides sufficent overviews of the data entering the platform. `R1.2 Technical Documentation` requires a closed reading of each repository 'docs', and evaluates whether the documents provide clear and useful instructions to successfully interact and use the platform. `R1.3 Format Control` concerns a format control test to ensure that users uploading data have to do so in a standardized form. `R1.4 Content Control` asks if user content goes under a form of peer review to ensure integrity of data producers. `R1.5  Authenticated Provenance` checks if there are forms of authentication in order to interact with the data repository. 
+Data Responsibility is the largest group of sub-classifications and focuses on the quality, re-usability and interoperability of data stored on the repository. `R1.1 Sufficient Metadata` asserts repository metadata conform to a general curation standard whereby data can be transformed for further discoverability and provides sufficent overviews of the data entering the platform. `R1.2 Technical Documentation` requires a closed reading of each repository 'docs', and evaluates whether the documents provide clear and useful instructions to successfully interact and use the platform. `R1.3 Format Control` concerns a format control test to ensure that users uploading data have to do so in a standardized form. `R1.4 Content Control` asks if user content goes under a form of peer review to ensure integrity of data producers. `R1.5  Database Authentication ` checks if there are forms of authentication in order to interact with the data repository. 
 
 ## Service Responsibility
 Service Responsibility is the smallest group of sub-classifications and focuses on the tools presented to download and upload data. `R2.1 Reliable Data Services` tests the performance of tools made available to download data and further  if data can be downloaded in a range of formats and is machine readable. 
@@ -76,7 +79,7 @@ mr = c(  "R1.1 Curated Metadata",
          # uploading data
          "R1.4 Content Control",
          # peer review
-         "R1.5  Authenticated Provenance")
+         "R1.5  Database Authentication ")
 r_score$`Data Responsibility` = mr
 
 sr = c("R2.1 Reliable Data Services")
@@ -102,7 +105,7 @@ kable(r_score, caption = "Modes of responsiblity and sub classifcations metrics"
 This sections outlines the justifications for each sub classification score per case study, the full results are summarised in table 2. 
 
 ## GISAID
-Overall, GISAID outperforms the Covid-19 Data Portal using our responsibility metric method. Moreover, GISAID at least partially implements all responsibility sub classification measurements and performs best in the Data and Service Responsibility. However GISAID is far from perfect. GISAID's metadata 
+Overall, GISAID outperforms the Covid-19 Data Portal using our responsibility metric. Moreover, GISAID at least partially implements all responsibility sub classification measurements and performs best in the Legal and Service Responsibility. 
 
 ### Data Responsibility 
 
@@ -121,22 +124,27 @@ GISAID clearly documents a format control for data producers to follow in order 
 
 Peer review is currently unknown.
 
-#### R1.5  Authenticated Provenance
+#### R1.5  Database Authentication 
 
-One clear distinction between the two platforms is the requirement for data producers and users to register in order to access the GISAID database. 
-GISAID requires users to confirm their identity and comply with GISAID's policy to not republish data without permission from the data producer and is the clearest distrinction between the two platforms openess philopsohies. Authentication to the GISAID platform takes between a few hours to several days and consists of seven "Personal Data" questions (*Title, Salutation, First Name, Middle Name, Last Name, Title, Desired Login*) and eleven "Contact information" questions (*Institution, Department, Street, Postal Code, City, Location, State/province, Telephone, Fax, Mobile, Email*). This simple, known and effective process determines a sufficent implementation score.   
+One clear distinction between the two platforms is the requirement for data producers and users to register in order to access the GISAID database. GISAID requires users to confirm their identity and comply with GISAID's policy to not republish data without permission from the data producer and is the clearest distrinction between the two platforms openess philopsohies. Authentication to the GISAID platform takes between a few hours to several days and consists of seven "Personal Data" questions (*Title, Salutation, First Name, Middle Name, Last Name, Title, Desired Login*) and eleven "Contact information" questions (*Institution, Department, Street, Postal Code, City, Location, State/province, Telephone, Fax, Mobile, Email*). This simple, known and effective process determines a sufficent implementation score.   
 
 ### Service Responsibility
 
 #### R2.1 Reliable Data Services
 
-As previously mentioned, GISAID's download and upload services function through a GUI on the platforms website. Sequences are downloaded using the "Alignment and proteins" download option which operates by calling an internal function to trigger a data download, this implementation provides a fast download service when the page is active and the download page scores a 92 in performance by PageSpeed Insights. 
+As previously stated, GISAID's download and upload services function through a GUI on the platforms website. Sequences can be downloaded using the database search page which provides an interactive environment for querying the GISAID central database. Sequences can be filtered using a range of drop down menus, date pickers and predefined categories (all of which missing in the metadata, see `R1.1`) and offers very fast sorting speeds, scoring a 92 in performance by PageSpeed Insight tests. GISAID also provides data services to download "Alignment and proteins", 
+
+By not providing any other forms of tooling such as CLI or API, GISAID partially levels the playing field in terms of accessing high volumes of data from the GISAID database, the design of the platform does not provide new users with the option to download the entire database. Some researchers believe this to be an issue of differential control, however GISAID have publicly stated this is by choice, so they have a clear understanding of who is downloading what data and for what reasons.    
+
+. In order to download to download large col
+
+ download option which operates by calling an internal function to trigger a data download, this implementation provides a fast download service when the page is active and the download page scores a 92 in performance by PageSpeed Insights. 
 
 ### Legal Responsibility
 
 #### R3.1 Manage IP of Data Producers
 
-The GISAID EpiCov Database utilizes a proprietary platform and software technology which is owned by GISAID and/or third party contractors, yet an explicit set of rules that govern the intellectual property of data producers is logged in clause `g` of the GISAID database access agreement. Data producers are expected to obtain the necessary authorization or license in order to share data on GISAID and must agree not to impose any further terms on the data which may alter or restrict further data sharing. Moreover, data producers should not reverse engineer or disclose any part of the database platform publiclly, as well as not utlislising any computer viruses to disrupt any part of the GISAID platform. GISAID makes clear there is a `limitation on liablity` and in no event will they be liable on any legal grounds to lost profits, savings, data, the cost of recreating lost data, interruption of business, or costs of procurement of substitute goods or services. Failure to adhere to the intellectual property agreement will lead to `Your rights upon suspension of access` or `Termination`. Although short and in sections rather unhelpful for Data Producers, GISAID does sufficiently implement an IP policy.
+The GISAID EpiCov Database utilizes a proprietary platform and software technology which is owned by GISAID and/or third party contractors, yet an explicit set of rules that govern the intellectual property of data producers is logged in clause `g` of the GISAID database access agreement. Data producers are expected to obtain the necessary authorization or license in order to share data on GISAID and must agree not to impose any further terms on the data which may alter or restrict further data sharing. Moreover, data producers should not reverse engineer or disclose any part of the database platform publiclly, as well as not utlislising any computer viruses that may disrupt any part of the GISAID platform. GISAID makes clear there is a `limitation on liablity` and in no event will they be liable on any legal grounds to lost profits, savings, data, the cost of recreating lost data, interruption of business, or costs of procurement of substitute goods or services. Failure to adhere to the intellectual property agreement will lead to `Your rights upon suspension of access` or `Termination` of a users account. Although short and in sections rather unhelpful for Data Producers, GISAID does sufficiently implement an IP policy.
 
 
 #### R3.2 Security of System
@@ -171,9 +179,9 @@ C19DP provide format control documentation as well as automated checks for each 
 
 This is currently unknown.
 
-#### R1.5  Authenticated Provenance
+#### R1.5  Database Authentication 
 
-Simply put, C19DP does not have any form of authenticated proviannce. This is however by design, the philosophy of the database is for rapid and immediate access to data and would consider log-in functioanlity as a barrier to data sharing. This design feaute highly benefits users of the platform as their is no lag time between finding and accessing the data. For data producers this lack of authentication is blurry, data producers still have to register a sample or a study with the ENA and EBI, which in practice is a form of authentication, by not signing up to C19DP means data producers only have to register to two institutions rather than three.
+Simply put, C19DP does not have any form of digital authentication. This is however by design, the philosophy of the database is for rapid and immediate access to data and would consider log-in functionality as a barrier to data sharing. This design feature highly benefits users of the platform, as their is no lag time between finding and accessing potentially useful data. For data producers this lack of authentication is blurry, data producers still have to register a sample or a study with the ENA and EBI, which in practice is a form of authentication, by not signing up to C19DP means data producers only have to register to two institutions rather than three.
 
 ### Service Responsibility
 
@@ -215,7 +223,7 @@ metric_col = c(
   # uploading data
   "R1.4 Content Control",
   # peer review
-  "R1.5  Authenticated Provenance",
+  "R1.5  Database Authentication ",
   # log in
   # SERVICES Responsibility
   "R2.1 Reliable Data Services",
@@ -265,14 +273,19 @@ kable(r_score1, caption = "Results", format = "latex")  %>% kable_material_dark(
 
 # Discussion
 
-This paper has presented a novel but highly subject approach
-The RR metric is a novel approach to quantitatively study the responsibility of a data repository, however is
+<!-- The responsible repositories metric is intended to address the needs of three key stakeholder groups: repository contributors, repository consumers and repository owners. For repository contributors the metrics identifies   -->
 
- to truly reflect a robust description of repository responsibility. A multitude of factors were not considered in this analysis, such as
-how practitioners of openness interpret what counts as responsible openness or how community users interact and use each platform. Further work refining the binary metric system may serve as a robust piece of empirical contribution in understanding the general question of responsibility in respotistiores, however only when coupled with qualitative differences.
+<!-- The metric aims to coax repository owners to improve transparency and accountability within their repository -->
+<!-- For -->
+
+<!-- the primary objective is to encourage careful reflection on the process of creating, distributing, and maintaining a dataset, including any underlying assumptions, potential risks or harms, and implications of use.  -->
+<!--  For dataset consumers, the primary objective is to ensure they have the information they need to make informed decisions about using a dataset. Transparency on the part of dataset creators is necessary for dataset consumers to be sufficiently well informed that they can select appropriate datasets for their chosen tasks and avoid unintentional misuse -->
+
+The responsible repositories metric is intended to address the needs of three key stakeholder groups: repository contributors, repository consumers and repository owners. For repository contributors the metrics identifies areas.
+The results from this analysis are, at best, an attempt in deconstructing responsibility into a binary metric, the results identify GISAID as being the more responsible database when compared with C19DP, nonetheless responsibility as a practice is not easily translated into numerical classifications or statistical results. Responsibility plays out in a multitude of factors which are commonly fogotten in purely quantitative studies, such as how practitioners of openness interpret what counts as responsible openness or how different community users acknowledge and interact with each platform. Without coupling a quantitative measurements with qualitative experience. Further work refining the binary metric system may serve as a robust piece of empirical contribution in understanding the general question of responsibility in respotistiores, however only when coupled with qualitative differences.
 
 
-(4) suggest that this should be added as a crucial additional factor for R, BUT also that this cannot be easily transformed into a binary metric (1-0) -- we are looking at
+
 
 (5) discuss how this works out in case og GISAID vs COVID-19 portal: here we have a clash of ideologies and experiences of what constitutes "good" openness
 
