@@ -90,13 +90,14 @@ Building on previous discussions on epistemic diversity and Open
 Science, we provide a novel metric system designed to elicit information
 regarding the responsibility of a given repository, as well as
 documenting a clear workflow for repository maintainers to follow when
-conducting an examination of their . After defining the characteristics
-of what constitutes as a responsible repository, we then use two case
-studies from popular genomic surveillance programs, GISAID and the
-Covid-19 Data Platform, to illustrate how different interpretations of
-responsible openness contribute to different implementations of
-responsibility measures. We conclude with a summary of results and a
-discussion of methodological challenges and pathways for future work.
+conducting an audit of responsiblity . After defining the
+characteristics of what constitutes as a responsible repository, we then
+use two case studies from popular genomic surveillance programs, GISAID
+and the Covid-19 Data Portal, to illustrate how different
+interpretations of responsible openness contribute to different
+implementations of responsibility measures. We conclude with a summary
+of results and a discussion of methodological challenges and pathways
+for future work.
 \end{abstract}
 
 \keywords{
@@ -118,18 +119,18 @@ discussion of methodological challenges and pathways for future work.
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-The demanded rapid, scalable and open access to the latest research
-findings, treatments and protocols on the coronavirus. This shift in
-research practice - in conjunction with decreasing costs in data storage
-- has led to an exponential increase in research out becoming publicly
-accessible online, as well as a global recognition of Open Science (OS)
-principles by the United Nations. Simultaneously, a wider discourse
-emerged among policy circles and researchers with concern to the
-responsibility of repositories reporting on COVID-19 and related topics,
-most evidently in relation to the prompt dissemination of genetic
-sequencing data from various strains of the SARS COV-2 virus (See inter
-alia Meredith et al. 2020; Romano and Melo 2021, 2021; Brito et al.
-2021; Kalia, Saberwal, and Sharma 2021; Harrison et al. 2021).
+The pandemic demanded rapid, scalable and open access to the latest
+research findings, treatments and protocols on the coronavirus. This
+shift in research practice - in conjunction with decreasing costs in
+data storage - has led to an exponential increase in research out
+becoming publicly accessible online, as well as a global recognition of
+Open Science (OS) principles by the United Nations. Simultaneously, a
+wider discourse emerged among policy circles and researchers with
+concern to the responsibility of repositories reporting on COVID-19 and
+related topics, most evidently in relation to the prompt dissemination
+of genetic sequencing data from various strains of the SARS COV-2 virus
+(See inter alia Meredith et al. 2020; Romano and Melo 2021, 2021; Brito
+et al. 2021; Kalia, Saberwal, and Sharma 2021; Harrison et al. 2021).
 
 On the 29th of January 2021 the governing board of the European
 Bioinformatics Institute (EBI) posted a public letter in Nature calling
@@ -146,35 +147,34 @@ the EBI's European COVID-19 Data Portal (C19DP) in the volume of genome
 sequences being shared to open access databases (See appendix Figure 1).
 GISAID was launched in 2008 to monitor global influenza outbreaks and
 from the offset positioned itself as an alternative to the public domain
-sharing model (creative commons), instead GISAID formulated a policy
-which required users to authenticate their academic identity and agree
-not to republish the sites genomes without permission from the data
-producer. At the beginning of 2020, after receiving a number of
-philanthropic donations from the World Health Organization, big-pharma
-and nation states, GISAID launched the EpiCov database which stores,
-analyses and builds evolutionary trees of SARS COV-2 genome sequences.
-The platform is currently hosted by the German Institute of Agriculture
-and the Max Planck institute and continues to be the leading open access
-database, with over 9 million genomes sequenced.
+sharing model, instead GISAID formulated a policy which required users
+to authenticate their academic identity and agree not to republish the
+sites genomes without permission from the data producer. At the
+beginning of 2020, after receiving a number of philanthropic donations
+from the World Health Organization, big-pharma and nation states, GISAID
+launched the EpiCov database which stores, analyses and builds
+evolutionary trees of SARS COV-2 genome sequences. The platform is
+currently hosted by the German Institute of Agriculture and the Max
+Planck institute and continues to be the leading open access database,
+with over 9 million genomes sequenced. Although the letter did not
+mention GISAID exclusively, this series of events brings together a
+clash in ideologies on what constitutes as responsible openness during a
+crisis. Leonelli (2021) introduces this case study as a clash in
+``responsible research measures,'' pointing out how ``trustworthy and
+explicitly non-exploitative conditions for data sharing helps to widen
+participation in data sharing.'' Under the same logic we stipulate that
+trust and responsiblitlity, or a lack of it, plays a central role in the
+success of OS platforms; hence researchers and data producers alike,
+must ensure quality and integrity of data when practicing OS principles
+in order to demonstrate the quality and discipline which OS research
+demands (Azeroual and Schöpfel 2021).
 
-Although the letter did not mention GISAID exclusively, this series of
-events brings together a clash in ideologies on what constitutes as
-responsible openness during a crisis. Leonelli (2021) introduces this
-case study as a clash in ``responsible research measures,'' pointing out
-how ``trustworthy and explicitly non-exploitative conditions for data
-sharing helps to widen participation in data sharing.''
-
-Under the same logic we stipulate that trust and responsiblitlity, or a
-lack of it, plays a central role in the success of OS platforms; hence
-researchers and data producers alike, must ensure quality and integrity
-of data when practicing OS principles in order to demonstrate the
-quality and discipline which OS research demands (Azeroual and Schöpfel
-2021). The TRUST (Transparency, Responsibility, User Focus,
-Sustainability, and Technology) principles put forth a set of guidelines
-to demonstrate the trustworthiness of a digital repository to many of
-the stakeholders involved, including researchers, community users,
-funders, developers and service providers. In an OS context, a number of
-trustworthiness certification mechanisms already exist;
+The TRUST (Transparency, Responsibility, User Focus, Sustainability, and
+Technology) principles put forth a set of guidelines to demonstrate the
+trustworthiness of a digital repository to many of the stakeholders
+involved, including researchers, community users, funders, developers
+and service providers. In an OS context, a number of trustworthiness
+certification mechanisms already exist;
 \texttt{The\ Open\ Archival\ Information\ System} (OAIS) provides a
 recommendation model to provide long-term preservation and access to
 digital information (Lavoie 2004), the \texttt{FAIR} principles
@@ -193,11 +193,11 @@ Building on previous discussions on epistemic diversity and Open
 Science, we provide a novel metric system designed to elicit information
 regarding the responsibility of a given repository, as well as
 documenting a clear workflow for repository maintainers to follow when
-conducting this metric system. After defining the characteristics of
-what constitutes as a responsible respoitory, we then use two case
-studies from popular genomic survelience programs, GISAID and the
-Covid-19 Data Platform, to illustrate how different interpretations of
-responsible openess contribute to different implenetations of
+conducting an examination of their . After defining the characteristics
+of what constitutes as a responsible repository, we then use two case
+studies from popular genomic surveillance programs, GISAID and the
+Covid-19 Data Portal, to illustrate how different interpretations of
+responsible openness contribute to different implementations of
 responsibility measures. We conclude with a summary of results and a
 discussion of methodological challenges and pathways for future work.
 
@@ -633,7 +633,7 @@ grabs,
 \centering
 \begin{tabular}[t]{l|r|r}
 \hline
-Metric & GISAID: EpiCov & EBI: Covid-19 Data Platform\\
+Metric & GISAID: EpiCov & EBI: Covid-19 Data Portal\\
 \hline
 R1.1 Sufficent Metadata & 0.4 & 0.9\\
 \hline
@@ -660,24 +660,6 @@ Total Score & 6.1 & 4.4\\
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
-
-The responsible repositories metric is intended to address the needs of
-three key stakeholder groups: repository contributors, repository
-consumers and repository owners. For repository contributors the metrics
-identifies areas. The results from this analysis are, at best, an
-attempt in deconstructing responsibility into a binary metric, the
-results identify GISAID as being the more responsible database when
-compared with C19DP, nonetheless responsibility as a practice is not
-easily translated into numerical classifications or statistical results.
-Responsibility plays out in a multitude of factors which are commonly
-fogotten in purely quantitative studies, such as how practitioners of
-openness interpret what counts as responsible openness or how different
-community users acknowledge and interact with each platform. Without
-coupling a quantitative measurements with qualitative experience.
-Further work refining the binary metric system may serve as a robust
-piece of empirical contribution in understanding the general question of
-responsibility in respotistiores, however only when coupled with
-qualitative differences.
 
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -711,7 +693,7 @@ qualitative differences.
 \centering
 \includegraphics{Report_files/figure-latex/fig2-1.pdf}
 \caption{Monthly totals of global SARS-CoV-2 cases sequenced and shared
-on the GISAID and Covid-19 Data Platform database until Febuary 22 2022}
+on the GISAID and Covid-19 Data Portal database until Febuary 22 2022}
 \end{figure}
 
 \hypertarget{references}{%
