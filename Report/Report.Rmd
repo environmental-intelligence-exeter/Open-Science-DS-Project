@@ -277,7 +277,6 @@ kable(r_score1, caption = "Results", format = "latex")  %>% kable_material_dark(
 
 <!-- The metric aims to coax repository owners to improve transparency and accountability within their repository -->
 <!-- For -->
-
 <!-- the primary objective is to encourage careful reflection on the process of creating, distributing, and maintaining a dataset, including any underlying assumptions, potential risks or harms, and implications of use.  -->
 <!--  For dataset consumers, the primary objective is to ensure they have the information they need to make informed decisions about using a dataset. Transparency on the part of dataset creators is necessary for dataset consumers to be sufficiently well informed that they can select appropriate datasets for their chosen tasks and avoid unintentional misuse -->
 
