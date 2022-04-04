@@ -11,7 +11,7 @@ authors:
     affiliation: Exeter University
     location: University of Exeter, St Germans Road, EX4 7HD Exeter, UK
     email: s.leonelli@exeter.ac.uk
-abstract: "Building on previous discussions on epistemic diversity and Open Science, we provide a novel metric system designed to elicit information regarding the responsibility of a given repository, as well as documenting a clear workflow for repository maintainers to follow when conducting an examination of their . After defining the characteristics of what constitutes as a responsible respoitory, we then use two case studies from popular genomic survelience programs, GISAID and the Covid-19 Data Platform, to illustrate how different interpretations of responsible openess contribute to different implenetations of responsibility measures. We conclude with a summary of results and a discussion of methodological challenges and pathways for future work."
+abstract: "Building on previous discussions on epistemic diversity and Open Science, we provide a novel metric system designed to elicit information regarding the responsibility of a given repository, as well as documenting a clear workflow for repository maintainers to follow when conducting an examination of their . After defining the characteristics of what constitutes as a responsible repository, we then use two case studies from popular genomic surveillance programs, GISAID and the Covid-19 Data Platform, to illustrate how different interpretations of responsible openness contribute to different implementations of responsibility measures. We conclude with a summary of results and a discussion of methodological challenges and pathways for future work."
 keywords:
   - Data Governance
   - Data Sharing
