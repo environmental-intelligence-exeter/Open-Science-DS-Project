@@ -75,3 +75,9 @@ formattable(
     `Score` = color_tile(customRed, customGreen)
   )
 )
+library(formattable)
+formattable::formattable(r_score1)
+formattable(r_score1, list(r_score1$`EBI: Covid-19 Data Portal` = sign_formatter))
+
+
+

@@ -119,6 +119,12 @@ GISAID clearly documents a format control for data producers to follow in order 
 
 #### R1.4 Content Control
 
+GISAID is committed to near-instant processing and release of genome and metadata to ensure its platform continues to make emerging outbreak information accessible at unprecedented speeds and scale. From time to time, laboratories will increase the speed with which they generate data and submit to GISAID, for instance when new Variants of Interest or Variants of Concern are designated by the WHO. With this increased speed, the need to check for errors in genomic sequence data or metadata also increases. 
+
+GISAID Curators, a team of experts strategically located around the globe that operates 24/7, recognize the substantial burden on laboratories to expedite generation and submission of data by supporting them with the possibility to update records when needed. 
+
+GISAID Curators frequently initiate contact with data submitters for clarification, for example, related to the sample collection date. These processes regularly result in an improvement of data and occasionally the withdrawal thereof, e.g. if it is determined that duplicates may have been introduced. In the event data are removed, following communication with the submitter, removal is indicated on the affected record and visible to all users. On other occasions, laboratories will re-sequence viral samples and generate more, or higher-quality genome sequences. Both sequences and metadata are made available as updated versions, which is indicated in the affected records.
+
 #### R1.5  Database Authentication 
 
 One clear distinction between the two platforms is the requirement for data producers and users to register in order to access the GISAID database. GISAID requires users to confirm their identity and comply with GISAID's policy to not republish data without permission from the data producer and is the clearest distrinction between the two platforms openess philopsohies. Authentication to the GISAID platform takes between a few hours to several days and consists of seven "Personal Data" questions (*Title, Salutation, First Name, Middle Name, Last Name, Title, Desired Login*) and eleven "Contact information" questions (*Institution, Department, Street, Postal Code, City, Location, State/province, Telephone, Fax, Mobile, Email*). This simple, known and effective process determines a sufficent implementation score.   
@@ -127,13 +133,8 @@ One clear distinction between the two platforms is the requirement for data prod
 
 #### R2.1 Reliable Data Services
 
-As previously stated, GISAID's download and upload services function through a GUI on the platforms website. Sequences can be downloaded using the database search page which provides an interactive environment for querying the GISAID central database. Sequences can be filtered using a range of drop down menus, date pickers and predefined categories (all of which missing in the metadata, see `R1.1`) and offers very fast sorting speeds, scoring a 92 in performance by PageSpeed Insight tests. GISAID further provides data services to download `alignment and proteins` and `genomic epidemiology`
-
-By not providing any other forms of tooling such as CLI or API, GISAID partially levels the playing field in terms of accessing high volumes of data from the GISAID database, the design of the platform does not provide new users with the option to download the entire database. Some researchers believe this to be an issue of differential control, however GISAID have publicly stated this is by choice, so they have a clear understanding of who is downloading what data and for what reasons.    
-
-. In order to download to download large col
-
- download option which operates by calling an internal function to trigger a data download, this implementation provides a fast download service when the page is active and the download page scores a 92 in performance by PageSpeed Insights. 
+GISAID's GUI to download and upload data is a sufficent and  implement reliable data services 
+Sequences can be downloaded using the database search page which provides an interactive environment for querying the GISAID central database. Sequences can be filtered using a range of drop down menus, date pickers and predefined categories (all of which missing in the metadata, see `R1.1`). GISAID further provides data services to download `alignment and proteins` and `genomic epidemiology` which operates by calling an internal function to trigger a data download, this implementation provides a fast download service when the page is active and the download page scores a 92 in performance by PageSpeed Insights. By not providing any other forms of tooling such as CLI or API, GISAID partially levels the playing field in terms of accessing high volumes of data from the GISAID database, GISAID does not permit new users with the option to download the entire database. Some researchers believe this to be an issue of differential control, however GISAID have publicly stated this is by choice, so they have a clear understanding of who is downloading what data and for what reasons [ref].    
 
 ### Legal Responsibility
 
@@ -148,7 +149,7 @@ GISAID uses a session based authentication, in contrast to token authentication 
 
 #### R3.3 Security of Content
 
-Currently unknown.
+All disputes arising out of or in connection with this Agreement that involve a Data provider shall be governed by such Data provider's local law.
 
 ## Covid-19 Data Portal
 
@@ -163,8 +164,6 @@ The Covid-19 Data Portal sufficiently implements a form of stanrdisesd metadata 
 #### R1.3 Technical Documentation
 
 Similar to GISAID, C19DP only provides documentation in English, however the technical docs provide a familiar format for open access software design. Within the C19DP there exists sufficient technical documentation for their proxy API and the bulk download tool, as well as examples on how to formulate queries and make curl requests for each of the tools. For data producers, C19DP links out to the ENA's SARS CoV-2 technical documentation which provides a clear documentation for the three submission options, GUI, CLI or submitting XML programtically via curl. The layout of the various documentations is best suited for those familiar with programming documentation. 
-
-. Both documentation pages can be found on the platform and each clearly 
 
 #### R1.3 Format Control
 
